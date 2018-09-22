@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "Nativecards",
+  "short_name": "Nativecards",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

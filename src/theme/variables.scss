@@ -35,10 +35,11 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
-  secondary:  #32db64,
+  secondary:  #336F00,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  light-dark: #333,
 );
 
 
@@ -70,7 +71,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.dark";
 
 
 // Ionicons
@@ -86,3 +87,17 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+$text-color: #d3d3d3;
+$spinner-ios-dots-color: $text-color;
+$spinner-md-dots-color: $text-color;
+
+
+.logo {
+  letter-spacing: 0.1em;
+  span {
+    background-color: #0c0b0b;
+    padding: 0.0em 0.1em 0.0em 0.2em;
+  }
+}

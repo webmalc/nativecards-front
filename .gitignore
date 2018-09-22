@@ -29,7 +29,12 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
+*.jks
 
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+# Nativecards
+src/environments/*
+!src/environments/environment.dist.ts
