@@ -23,34 +23,63 @@ export class Api {
     return this.url + path;
   }
 
-  // Make POST request
-  public requestPost(path: string, data, token: boolean = true) {
+  // Make request
+  protected request(type: string, path: string, data = null) {
     let url = this.getUrl(path);
     let options = this.baseOptions;
 
-    return this.http.post(url, data, options);
+    return Observable.create(observer => {
+      this.storage.get('user').then(user => {
+        if (user) {
+          options.headers = options.headers.set('Authorization', 'JWT ' + user.token);
+        }
+        let http = this.http.get(url, options);
+        switch (type) {
+          case 'get': {
+            http = this.http.get(url, options);
+            break;
+          }
+          case 'post': {
+            http = this.http.post(url, data, options);
+            break;
+          }
+          case 'put': {
+            http = this.http.put(url, data, options);
+            break;
+          }
+          case 'patch': {
+            http = this.http.patch(url, data, options);
+            break;
+          }
+        }
+        http.subscribe(data => {
+          observer.next(data);
+          observer.complete();
+        }, error => {
+          observer.error();
+          observer.complete();
+        });
+      });
+    });
+  }
+
+  // Make POST request
+  public requestPost(path: string, data) {
+    return this.request('post', path, data);
+  }
+
+  // Make PATCH request
+  public requestPatch(path: string, data) {
+    return this.request('patch', path, data);
+  }
+
+  // Make PUT request
+  public requestPut(path: string, data) {
+    return this.request('put', path, data);
   }
 
   // Make GET request
-  public requestGet(path: string, token: boolean = true) {
-    let url = this.getUrl(path);
-    let options = this.baseOptions;
-
-    if (token) {
-      return Observable.create(observer => {
-        this.storage.get('user').then(user => {
-          options.headers = options.headers.set('Authorization', 'JWT ' + user.token);
-          this.http.get(url, options).subscribe(data => {
-            observer.next(data);
-            observer.complete();
-          }, error => {
-            observer.error();
-            observer.complete();
-          });
-        });
-      });
-    } else {
-      return this.http.get(url, options);
-    }
+  public requestGet(path: string) {
+    return this.request('get', path);
   }
 }

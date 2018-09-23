@@ -41,7 +41,6 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
       this.auth.refreshToken().subscribe((user) => {
         this.user = user;
         this.nav.setRoot(DashboardPage);
