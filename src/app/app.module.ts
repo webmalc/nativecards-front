@@ -12,6 +12,7 @@ import { DashboardPageModule } from '../pages/dashboard/dashboard.module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { DashboardProvider } from '../providers/dashboard/dashboard';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuthProvider } from '../providers/auth/auth';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthProvider
+    AuthProvider,
+    DashboardProvider
   ]
 })
 export class AppModule { }

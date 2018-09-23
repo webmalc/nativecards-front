@@ -1,6 +1,8 @@
 import { environment } from '../../environments/environment'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { elementAttribute } from '@angular/core/src/render3/instructions';
+import { Observable } from 'rxjs/Observable';
 
 export class Api {
 
@@ -34,6 +36,21 @@ export class Api {
     let url = this.getUrl(path);
     let options = this.baseOptions;
 
-    return this.http.get(url, options);
+    if (token) {
+      return Observable.create(observer => {
+        this.storage.get('user').then(user => {
+          options.headers = options.headers.set('Authorization', 'JWT ' + user.token);
+          this.http.get(url, options).subscribe(data => {
+            observer.next(data);
+            observer.complete();
+          }, error => {
+            observer.error();
+            observer.complete();
+          });
+        });
+      });
+    } else {
+      return this.http.get(url, options);
+    }
   }
 }

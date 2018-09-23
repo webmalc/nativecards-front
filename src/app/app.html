@@ -9,7 +9,7 @@
   <ion-content>
     <ion-list>
       <ion-list-header *ngIf="user">
-        <ion-icon name="person"></ion-icon> {{ user.login }}
+        <ion-icon name="person"></ion-icon> {{ user.username }}
       </ion-list-header>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{ p.icon }}"></ion-icon> {{p.title}}

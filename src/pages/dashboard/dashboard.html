@@ -4,14 +4,55 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <ion-grid fixed>
+        <ion-card text-left margin-top>
+            <ion-card-content>
+                <form>
+                    <ion-row>
+                        <ion-col>
+                            <ion-list inset>
+                                <ion-item>
+                                    <ion-input type="text" placeholder="Find the word" name="word" required></ion-input>
+                                </ion-item>
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col class="signup-col">
+                            <button full ion-button color="light-dark" class="submit-btn" type="submit">
+                        <ion-icon name="search" margin-right></ion-icon>Find
+                      </button>
+                        </ion-col>
+                    </ion-row>
+                </form>
+            </ion-card-content>
+        </ion-card>
 
-    <ion-card text-left margin-top>
-        <ion-card-content>
-            <ion-card-title>
-                Test
-                <ion-icon name="arrow-dropright" float-right></ion-icon>
-            </ion-card-title>
-        </ion-card-content>
-    </ion-card>
+        <div *ngIf="!widgets" margin-top text-center>
+            <ion-spinner name="dots"></ion-spinner>
+        </div>
+
+        <ion-card text-left *ngFor="let widget of widgets" margin-top>
+            <ion-card-header margin-bottom>
+                {{ widget.title }}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item *ngFor="let row of widget.elements">
+                    {{ row.title }}
+                    <ion-badge item-end color="{{ row.color }}">
+                        {{ row.value }}
+                    </ion-badge>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+
+    </ion-grid>
 </ion-content>
+
+
+<ion-footer no-border text-center>
+    <ion-toolbar>
+        <button ion-button>Practice</button>
+    </ion-toolbar>
+</ion-footer>

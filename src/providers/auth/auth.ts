@@ -22,8 +22,6 @@ export class AuthProvider extends Api {
             observer.next(user);
             observer.complete();
           });
-          observer.next(true);
-          observer.complete();
         } else {
           observer.next(false);
           observer.complete();
@@ -53,18 +51,16 @@ export class AuthProvider extends Api {
                 observer.next(user);
                 observer.complete();
               });
-              observer.next(true);
-              observer.complete();
             } else {
-              observer.next(false);
+              observer.error();
               observer.complete();
             }
           }, error => {
-            observer.next(false);
+            observer.error();
             observer.complete();
           })
         } else {
-          observer.next(false);
+          observer.error();
           observer.complete();
         }
       });

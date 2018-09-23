@@ -1,27 +1,25 @@
 import { NavController, ToastController, LoadingController, Loading, } from 'ionic-angular';
 
-// import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-// import { BrowserProvider } from '../providers/browser/browser';
+import { AuthProvider } from '../providers/auth/auth';
 import { User } from '../models/user';
 
 export class BasePage {
 
   public loading: Loading;
   public reloadButton: boolean = false;
-  public currentUser: User;
+  public user: User;
 
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    // public auth: AuthServiceProvider,
-    // public browser: BrowserProvider,
+    public auth: AuthProvider,
   ) {
-    // this.auth.getUserInfo().then((user) => {
-    //   if (user) {
-    //     this.currentUser = user;
-    //   }
-    // });
+    this.auth.getUserInfo().then((user) => {
+      if (user) {
+        this.user = user;
+      }
+    });
   }
 
   public showLoading() {
@@ -41,7 +39,7 @@ export class BasePage {
     }
   }
 
-  public showError(text) {
+  public showError(text: string = 'Oops, something went wrong!') {
     this.dismissLoading();
     const toast = this.toastCtrl.create({
       message: text,

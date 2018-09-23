@@ -43,12 +43,8 @@ export class MyApp {
       this.splashScreen.hide();
 
       this.auth.refreshToken().subscribe((user) => {
-        if (user) {
-          this.user = user;
-          this.nav.setRoot(DashboardPage);
-        } else {
-          this.nav.setRoot(LoginPage);
-        }
+        this.user = user;
+        this.nav.setRoot(DashboardPage);
       }, error => {
         this.nav.setRoot(LoginPage);
       });

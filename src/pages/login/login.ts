@@ -24,7 +24,7 @@ export class LoginPage extends BasePage {
     public loadingCtrl: LoadingController,
     public events: Events,
   ) {
-    super(navCtrl, toastCtrl, loadingCtrl);
+    super(navCtrl, toastCtrl, loadingCtrl, auth);
   }
 
   public login() {

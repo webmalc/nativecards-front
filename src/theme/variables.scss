@@ -34,11 +34,14 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #336F00,
-  danger:     #f53d3d,
+  /* primary:    #488aff, */
+  primary:    #385587,
+  secondary:  #2d5907,
+  danger:     #a02c2c,
   light:      #f4f4f4,
+  white:      #d3d3d3,
   dark:       #222,
+  strong-dark: #111,
   light-dark: #333,
 );
 
@@ -89,21 +92,9 @@ $colors: (
 @import "noto-sans";
 
 
-$text-color: #d3d3d3;
+$text-color: color($colors, white);
 $spinner-ios-dots-color: $text-color;
 $spinner-md-dots-color: $text-color;
-
-
-.logo {
-  cursor: pointer;
-  letter-spacing: 0.1em;
-  span {
-    background-color: #333;
-    padding: 0.0em 0.1em 0.0em 0.2em;
-    display: inline-block;
-    margin-left: 4px;
-  }
-}
 
 $screen-breakpoints: (
   xs: 0,
@@ -118,5 +109,35 @@ $screen-breakpoints: (
     @media  screen and (max-width: $size-value) {
       display: none;
     }
+  }
+}
+
+ion-card {
+  form {
+    ion-item {
+      background-color: color($colors, strong-dark) !important;
+    }
+  }
+  ion-item {
+    background-color: color($colors, light-dark) !important;
+    color: color($colors, white) !important;
+  }
+}
+ion-card-header {
+  color: color($colors, white) !important;
+  border-bottom: 1px dashed color($colors, light-dark);
+}
+ion-card-content p {
+  color: color($colors, white) !important;
+}
+
+.logo {
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  span {
+    background-color: #333;
+    padding: 0.0em 0.1em 0.0em 0.2em;
+    display: inline-block;
+    margin-left: 4px;
   }
 }
