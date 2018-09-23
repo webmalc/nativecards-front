@@ -19,7 +19,6 @@ export class AuthProvider extends Api {
         if (data && data['token']) {
           let user = new User(credentials.username, data['token']);
           this.storage.set('user', user).then((user) => {
-            console.log(user);
             observer.next(user);
             observer.complete();
           });
@@ -39,6 +38,37 @@ export class AuthProvider extends Api {
   // Get user from storage
   public getUserInfo() {
     return this.storage.get('user');
+  }
+
+  // Refresh user token
+  public refreshToken() {
+    return Observable.create(observer => {
+      this.getUserInfo().then((oldUser) => {
+        if (oldUser) {
+          let tokenData = { 'token': oldUser.token };
+          this.requestPost('api-token-refresh/', tokenData, false).subscribe(data => {
+            if (data && data['token']) {
+              let user = new User(oldUser.username, data['token']);
+              this.storage.set('user', user).then((user) => {
+                observer.next(user);
+                observer.complete();
+              });
+              observer.next(true);
+              observer.complete();
+            } else {
+              observer.next(false);
+              observer.complete();
+            }
+          }, error => {
+            observer.next(false);
+            observer.complete();
+          })
+        } else {
+          observer.next(false);
+          observer.complete();
+        }
+      });
+    });
   }
 
   // Logout user

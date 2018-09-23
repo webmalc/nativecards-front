@@ -20,7 +20,7 @@ export class MyApp {
   public user: User;
   public rootPage: any = HomePage;
 
-  public pages: Array<{ title: string, component: any }>;
+  public pages: Array<{ title: string, icon: string, component: any }>;
 
   constructor(
     public platform: Platform,
@@ -32,7 +32,7 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Home', component: HomePage },
+      { title: 'Dashboard', 'icon': 'speedometer', component: DashboardPage },
     ];
 
   }
@@ -42,13 +42,15 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.auth.getUserInfo().then((user) => {
+      this.auth.refreshToken().subscribe((user) => {
         if (user) {
           this.user = user;
           this.nav.setRoot(DashboardPage);
         } else {
           this.nav.setRoot(LoginPage);
         }
+      }, error => {
+        this.nav.setRoot(LoginPage);
       });
       this.events.subscribe('user:login', (user, time) => {
         this.user = user;
@@ -58,5 +60,14 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.auth.logout().then(allowed => {
+      this.nav.setRoot(LoginPage);
+    },
+      error => {
+        alert(error);
+      });
   }
 }
