@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
-import { DashboardProvider } from '../../providers/dashboard/dashboard';
-import { BasePage } from '../../lib/page';
 import { AuthProvider } from '../../providers/auth/auth';
+import { BasePage } from '../../lib/page';
 
 @IonicPage()
 @Component({
-  selector: 'page-dashboard',
-  templateUrl: 'dashboard.html',
+  selector: 'page-settings',
+  templateUrl: 'settings.html',
 })
-export class DashboardPage extends BasePage {
-
-  public widgets: any;
+export class SettingsPage extends BasePage {
 
   constructor(
     public navCtrl: NavController,
-    public dashboard: DashboardProvider,
     public auth: AuthProvider,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
@@ -24,11 +20,7 @@ export class DashboardPage extends BasePage {
   }
 
   ionViewDidLoad() {
-    this.dashboard.fetch().subscribe(widgets => {
-      this.widgets = widgets;
-    }, error => {
-      this.showError()
-    })
+    console.log('ionViewDidLoad SettingsPage');
   }
 
 }

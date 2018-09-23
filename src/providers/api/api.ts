@@ -1,7 +1,6 @@
 import { environment } from '../../environments/environment'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { elementAttribute } from '@angular/core/src/render3/instructions';
 import { Observable } from 'rxjs/Observable';
 
 export class Api {

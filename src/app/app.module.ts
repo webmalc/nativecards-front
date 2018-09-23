@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
 import { DashboardPageModule } from '../pages/dashboard/dashboard.module';
+import { SettingsPageModule } from '../pages/settings/settings.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +27,7 @@ import { DashboardProvider } from '../providers/dashboard/dashboard';
     IonicModule.forRoot(MyApp),
     LoginPageModule,
     DashboardPageModule,
+    SettingsPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -10,6 +10,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { SettingsPage } from '../pages/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,6 +34,7 @@ export class MyApp {
 
     this.pages = [
       { title: 'Dashboard', 'icon': 'speedometer', component: DashboardPage },
+      { title: 'Settings', 'icon': 'settings', component: SettingsPage },
     ];
 
   }
