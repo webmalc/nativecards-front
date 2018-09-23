@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <navbar title="Login" [menu]="false"></navbar>
   </ion-navbar>
 </ion-header>
 
@@ -13,6 +13,7 @@
           <ion-row>
             <ion-col>
               <ion-list inset>
+
                 <ion-item>
                   <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="credentials.username" required></ion-input>
                 </ion-item>
@@ -20,6 +21,7 @@
                 <ion-item>
                   <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentials.password" required></ion-input>
                 </ion-item>
+
               </ion-list>
             </ion-col>
           </ion-row>

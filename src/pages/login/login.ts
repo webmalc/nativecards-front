@@ -16,7 +16,8 @@ export class LoginPage extends BasePage {
     password: '',
   };
 
-  public constructor(public navCtrl: NavController,
+  public constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     public auth: AuthProvider,
     public toastCtrl: ToastController,

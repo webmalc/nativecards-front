@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle *ngIf="menu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <ion-row>
+        <ion-col>
+          {{ title }}
+        </ion-col>
+        <ion-col class="hide-sm" text-right hideWhen="android,ios">
+          <div class="logo" (click)="goHome()"><span>N</span>ATIVE<span>C</span>ARDS</div>
+        </ion-col>
+      </ion-row>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
