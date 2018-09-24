@@ -4,6 +4,55 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  settings
+<ion-content>
+  <div *ngIf="!settings" margin-top text-center>
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+
+  <ion-grid fixed *ngIf="settings">
+    <ion-row>
+      <ion-col>
+        <form (ngSubmit)="save()" #entryForm="ngForm">
+          <ion-row>
+            <ion-col>
+              <ion-list inset>
+
+                <ion-item >
+                  <ion-label [class.danger]="errors.attemptsToRemember" stacked>Attempts to remeber the word</ion-label>
+                  <ion-input type="number" [(ngModel)]="settings.attemptsToRemember" name="attemptsToRemember" min="3" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.cardsPerLesson" stacked>Cards per lesson</ion-label>
+                  <ion-input type="number" [(ngModel)]="settings.cardsPerLesson" name="cardsPerLesson" min="5" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.cardsToRepeat" stacked>Cards to repeat per lesson</ion-label>
+                  <ion-input type="number" [(ngModel)]="settings.cardsToRepeat" name="cardsToRepeat" min="0" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.lessonLatestDays" stacked>Num of days to get last words</ion-label>
+                  <ion-input type="number" [(ngModel)]="settings.lessonLatestDays" name="lessonLatestDays" min="5" required></ion-input>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="signup-col">
+              <button ion-button color="dark" class="submit-btn" full type="submit" [disabled]="entryForm.form.invalid || isSaving">
+                <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
+                <ion-icon *ngIf="!isSaving" name="checkmark-circle" margin-right></ion-icon>
+                Save
+              </button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

@@ -27,7 +27,7 @@ export class DashboardPage extends BasePage {
     this.dashboard.fetch().subscribe(widgets => {
       this.widgets = widgets;
     }, error => {
-      this.showError()
+      this.showMessage()
     })
   }
 

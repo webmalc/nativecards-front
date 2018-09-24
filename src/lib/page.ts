@@ -39,7 +39,7 @@ export class BasePage {
     }
   }
 
-  public showError(text: string = 'Oops, something went wrong!') {
+  public showMessage(text: string = 'Oops, something went wrong!') {
     this.dismissLoading();
     const toast = this.toastCtrl.create({
       message: text,

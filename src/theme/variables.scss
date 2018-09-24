@@ -35,7 +35,7 @@ $app-direction: ltr;
 
 $colors: (
   /* primary:    #488aff, */
-  primary:    #385587,
+  primary:    #f1f1f1,
   secondary:  #2d5907,
   danger:     #a02c2c,
   light:      #f4f4f4,
@@ -112,6 +112,13 @@ $screen-breakpoints: (
   }
 }
 
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 ion-card {
   form {
     ion-item {
@@ -130,7 +137,18 @@ ion-card-header {
 ion-card-content p {
   color: color($colors, white) !important;
 }
+form {
+  ion-input, ion-label {
+    padding: 0px 8px;
+  }
+  ion-label {
+    text-transform: uppercase;
+  }
+}
 
+.danger {
+  color: color($colors, danger) !important;
+}
 .logo {
   cursor: pointer;
   letter-spacing: 0.1em;

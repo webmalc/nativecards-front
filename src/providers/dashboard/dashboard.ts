@@ -20,17 +20,17 @@ export class DashboardProvider extends Api {
           'elements': [
             {
               'title': 'attempts',
-              'value': data.today_attempts,
+              'value': data.todayAttempts,
               'color': 'primary'
             },
             {
               'title': 'correct attempts',
-              'value': data.today_correct_attempts,
+              'value': data.todayCorrectAttempts,
               'color': 'secondary'
             },
             {
               'title': 'incorrect attempts',
-              'value': data.today_incorrect_attempts,
+              'value': data.todayIncorrectAttempts,
               'color': 'dark'
             },
           ]
@@ -40,17 +40,17 @@ export class DashboardProvider extends Api {
           'elements': [
             {
               'title': 'attempts',
-              'value': data.week_attempts,
+              'value': data.weekAttempts,
               'color': 'primary'
             },
             {
               'title': 'correct attempts',
-              'value': data.week_correct_attempts,
+              'value': data.weekCorrectAttempts,
               'color': 'secondary'
             },
             {
               'title': 'incorrect attempts',
-              'value': data.week_incorrect_attempts,
+              'value': data.weekIncorrectAttempts,
               'color': 'dark'
             },
           ]
@@ -60,17 +60,17 @@ export class DashboardProvider extends Api {
           'elements': [
             {
               'title': 'attempts',
-              'value': data.month_attempts,
+              'value': data.monthAttempts,
               'color': 'primary'
             },
             {
               'title': 'correct attempts',
-              'value': data.month_correct_attempts,
+              'value': data.monthCorrectAttempts,
               'color': 'secondary'
             },
             {
               'title': 'incorrect attempts',
-              'value': data.month_incorrect_attempts,
+              'value': data.monthIncorrectAttempts,
               'color': 'dark'
             },
           ]
@@ -80,17 +80,17 @@ export class DashboardProvider extends Api {
           'elements': [
             {
               'title': 'total',
-              'value': data.total_cards,
+              'value': data.totalCards,
               'color': 'primary'
             },
             {
               'title': 'learned',
-              'value': data.learned_cards,
+              'value': data.learnedCards,
               'color': 'secondary'
             },
             {
               'title': 'unlearned',
-              'value': data.unlearned_cards,
+              'value': data.unlearnedCards,
               'color': 'dark'
             },
           ]

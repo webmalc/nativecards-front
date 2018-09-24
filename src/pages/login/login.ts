@@ -36,12 +36,12 @@ export class LoginPage extends BasePage {
         this.events.publish('user:login', user, Date.now());
         this.navCtrl.setRoot(DashboardPage);
       } else {
-        this.showError('The login credentials are incorrect');
+        this.showMessage('The login credentials are incorrect');
       }
     },
       error => {
         this.dismissLoading();
-        this.showError(error);
+        this.showMessage(error);
       });
   }
 }
