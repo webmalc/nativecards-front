@@ -149,6 +149,9 @@ form {
 .danger {
   color: color($colors, danger) !important;
 }
+.newline {
+  white-space: pre-line;
+}
 .logo {
   cursor: pointer;
   letter-spacing: 0.1em;
@@ -158,4 +161,8 @@ form {
     display: inline-block;
     margin-left: 4px;
   }
+}
+ion-card-header.disabled {
+  text-decoration: line-through;
+  color: color($colors, danger) !important;
 }

@@ -21,17 +21,15 @@
                     <ion-row>
                         <ion-col class="signup-col">
                             <button full ion-button color="light-dark" class="submit-btn" type="submit">
-                        <ion-icon name="search" margin-right></ion-icon>Find
-                      </button>
+                            <ion-icon name="search" margin-right></ion-icon>Find
+                            </button>
                         </ion-col>
                     </ion-row>
                 </form>
             </ion-card-content>
         </ion-card>
 
-        <div *ngIf="!widgets" margin-top text-center>
-            <ion-spinner name="dots"></ion-spinner>
-        </div>
+        <loading [data]="widgets"></loading>
 
         <ion-card text-left *ngFor="let widget of widgets" margin-top>
             <ion-card-header margin-bottom>

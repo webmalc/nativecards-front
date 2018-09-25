@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <navbar title="Decks"></navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <loading [data]="decks"></loading>
+
+  <ion-grid fixed>
+
+    <ion-card *ngFor="let deck of decks" text-left margin-top>
+      <ion-card-header [class.disabled]="!deck.isEnabled" margin-bottom>
+        {{ deck.title }}<ion-icon *ngIf="deck.isDefault" name="checkbox" margin-left></ion-icon>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row *ngIf="deck.description">
+          <ion-col class="newline">{{ deck.description }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-center>
+            <button ion-button full color="light-dark" margin-top>
+              <ion-icon name="create" margin-right></ion-icon>Edit
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-grid>
+</ion-content>

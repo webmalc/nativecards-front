@@ -61,6 +61,9 @@ export class Api {
           }
         }
         http.map(res => {
+          if (res['results'] && Array.isArray(res['results'])) {
+            res['results'] = camelcase(res['results']);
+          }
           return camelcase(res);
         }).subscribe(data => {
           observer.next(data);

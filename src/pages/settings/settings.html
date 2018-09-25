@@ -5,9 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!settings" margin-top text-center>
-    <ion-spinner name="dots"></ion-spinner>
-  </div>
+  <loading [data]="settings"></loading>
 
   <ion-grid fixed *ngIf="settings">
     <ion-row>

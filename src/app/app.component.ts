@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { SettingsPage } from '../pages/settings/settings';
+import { DecksPage } from '../pages/decks/decks';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,6 +35,7 @@ export class MyApp {
 
     this.pages = [
       { title: 'Dashboard', 'icon': 'speedometer', component: DashboardPage },
+      { title: 'Decks', 'icon': 'folder', component: DecksPage },
       { title: 'Settings', 'icon': 'settings', component: SettingsPage },
     ];
 
@@ -45,7 +47,8 @@ export class MyApp {
       this.splashScreen.hide();
       this.auth.refreshToken().subscribe((user) => {
         this.user = user;
-        this.nav.setRoot(DashboardPage);
+        // this.nav.setRoot(DashboardPage);
+        this.nav.setRoot(DecksPage);
       }, error => {
         this.nav.setRoot(LoginPage);
       });
