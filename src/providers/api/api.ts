@@ -8,8 +8,16 @@ import * as snakecase from "snakecase-keys";
 export class Api {
 
   protected baseOptions;
+
   protected url: string;
-  protected excludedFields = ['created', 'modified', 'created_by', 'modified_by']
+
+  protected excludedFields = [
+    'created',
+    'modified',
+    'created_by',
+    'modified_by',
+    'image',
+  ]
 
   public constructor(protected http: HttpClient, protected storage: Storage) {
     this.url = environment.api_url
@@ -47,6 +55,10 @@ export class Api {
             http = this.http.get(url, options);
             break;
           }
+          case 'delete': {
+            http = this.http.delete(url, options);
+            break;
+          }
           case 'post': {
             http = this.http.post(url, data, options);
             break;
@@ -61,10 +73,15 @@ export class Api {
           }
         }
         http.map(res => {
-          if (res['results'] && Array.isArray(res['results'])) {
-            res['results'] = camelcase(res['results']);
+          if (res) {
+            if (res['results'] && Array.isArray(res['results'])) {
+              res['results'] = camelcase(res['results']);
+            }
+            return camelcase(res);
+
+          } else {
+            return res;
           }
-          return camelcase(res);
         }).subscribe(data => {
           observer.next(data);
           observer.complete();
@@ -78,6 +95,10 @@ export class Api {
         })
       });
     });
+  }
+
+  public requestDelete(path: string) {
+    return this.request('delete', path);
   }
 
   // Make POST request

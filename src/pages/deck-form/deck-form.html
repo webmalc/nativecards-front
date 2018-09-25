@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle *ngIf="menu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <loading *ngIf="id" [data]="deck"></loading>
+
+  <ion-grid fixed *ngIf="!id || deck">
+    <ion-row>
+      <ion-col>
+        <form (ngSubmit)="save()" #entryForm="ngForm">
+          <ion-row>
+            <ion-col>
+              <ion-list inset>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.title" stacked>
+                    Title
+                  </ion-label>
+                  <ion-input type="text" [(ngModel)]="deck.title" name="title" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.description" stacked>
+                    Description
+                  </ion-label>
+                  <ion-textarea rows="5" [(ngModel)]="deck.description" name="description"></ion-textarea>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.isDefault">Is default?</ion-label>
+                  <ion-checkbox [(ngModel)]="deck.isDefault" color="strong-dark" name="isDefault"></ion-checkbox>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.isEnabled">Is enabled?</ion-label>
+                  <ion-checkbox [(ngModel)]="deck.isEnabled" color="strong-dark" name="isEnabled"></ion-checkbox>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="signup-col">
+              <button ion-button color="dark" class="submit-btn" full type="submit" [disabled]="entryForm.form.invalid || isSaving">
+                <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
+                <ion-icon *ngIf="!isSaving" name="checkmark-circle" margin-right></ion-icon>
+                Save
+              </button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+<ion-footer no-border text-center *ngIf="deck && id && !deck.isDefault">
+  <ion-toolbar>
+    <button ion-button color="dark" (click)="delete()">
+      <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
+      <ion-icon *ngIf="!isSaving" name="trash" margin-right></ion-icon>
+      Delete the deck
+    </button>
+  </ion-toolbar>
+</ion-footer>

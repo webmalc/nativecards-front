@@ -14,12 +14,12 @@
         {{ deck.title }}<ion-icon *ngIf="deck.isDefault" name="checkbox" margin-left></ion-icon>
       </ion-card-header>
       <ion-card-content>
-        <ion-row *ngIf="deck.description">
-          <ion-col class="newline">{{ deck.description }}</ion-col>
+        <ion-row>
+          <ion-col class="newline" >{{ deck.description }}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col text-center>
-            <button ion-button full color="light-dark" margin-top>
+            <button (click)="edit(deck)" ion-button full color="light-dark" margin-top>
               <ion-icon name="create" margin-right></ion-icon>Edit
             </button>
           </ion-col>
@@ -29,3 +29,11 @@
 
   </ion-grid>
 </ion-content>
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <button ion-button (click)="create()">
+      <ion-icon name="add" margin-right></ion-icon>New deck
+    </button>
+  </ion-toolbar>
+</ion-footer>

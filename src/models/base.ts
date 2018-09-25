@@ -9,5 +9,5 @@ export class Base {
 
   public modified_by: string;
 
-  public is_enabled: boolean = true;
+  public isEnabled: boolean = true;
 }

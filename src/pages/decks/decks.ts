@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { DecksProvider } from '../../providers/decks/decks'
 import { BasePage } from '../../lib/page';
 import { Deck } from '../../models/deck';
+import { DeckFormPage } from '../deck-form/deck-form';
 
 @IonicPage()
 @Component({
@@ -24,11 +25,20 @@ export class DecksPage extends BasePage {
     super(navCtrl, toastCtrl, loadingCtrl, auth);
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.decksProvider.fetch().subscribe(decks => {
       this.decks = decks.results;
     }, error => {
       this.showMessage()
-    })
+    });
+  }
+
+
+  public edit(deck: Deck) {
+    this.navCtrl.push(DeckFormPage, { 'deck': deck });
+  }
+
+  public create() {
+    this.navCtrl.push(DeckFormPage);
   }
 }

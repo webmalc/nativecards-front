@@ -34,7 +34,7 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  /* primary:    #488aff, */
+  primary-blue:    #2e5aa5,
   primary:    #f1f1f1,
   secondary:  #2d5907,
   danger:     #a02c2c,
@@ -138,11 +138,14 @@ ion-card-content p {
   color: color($colors, white) !important;
 }
 form {
-  ion-input, ion-label {
+  ion-input, ion-label, ion-textarea {
     padding: 0px 8px;
   }
   ion-label {
     text-transform: uppercase;
+  }
+  ion-textarea, textarea {
+    resize:none;
   }
 }
 
@@ -166,3 +169,6 @@ ion-card-header.disabled {
   text-decoration: line-through;
   color: color($colors, danger) !important;
 }
+
+$alert-md-button-text-color: color($colors, strong-dark);
+$alert-ios-button-text-color: color($colors, strong-dark);
