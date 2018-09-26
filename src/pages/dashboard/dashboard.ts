@@ -3,6 +3,8 @@ import { IonicPage, NavController, ToastController, LoadingController } from 'io
 import { DashboardProvider } from '../../providers/dashboard/dashboard';
 import { BasePage } from '../../lib/page';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Query } from '../../models/query';
+import { WordsPage } from '../words/words';
 
 @IonicPage()
 @Component({
@@ -12,6 +14,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class DashboardPage extends BasePage {
 
   public widgets: any;
+  public query: Query;
 
   constructor(
     public navCtrl: NavController,
@@ -21,9 +24,10 @@ export class DashboardPage extends BasePage {
     public loadingCtrl: LoadingController,
   ) {
     super(navCtrl, toastCtrl, loadingCtrl, auth);
+    this.query = new Query();
   }
 
-  ionViewDidLoad() {
+  public ionViewDidLoad() {
     this.dashboard.fetch().subscribe(widgets => {
       this.widgets = widgets;
     }, error => {
@@ -31,4 +35,7 @@ export class DashboardPage extends BasePage {
     })
   }
 
+  public search() {
+    this.navCtrl.push(WordsPage, { 'query': this.query });
+  }
 }

@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-navbar>
+    <navbar title="Cards"></navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <loading [data]="words"></loading>
+
+  <ion-grid fixed>
+
+<ion-card text-left>
+  <ion-card-content class="form">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-input [(ngModel)]="query.word" type="text" placeholder="Word or phrase" name="word"></ion-input>
+            </ion-item>
+
+            <loading [data]="decks"></loading>
+            <ion-item class="decks" *ngIf="decks">
+              <ion-label>Deck</ion-label>
+              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
+                <ion-option value=""></ion-option>
+                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                  {{ deck.title }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col>
+          <button (click)="add()" ion-button color="light-dark" full [disabled]="isSearching">
+            <ion-spinner *ngIf="isSearching" name="dots" margin-right></ion-spinner>
+            <ion-icon *ngIf="!isSearching" name="add" margin-right></ion-icon>Add
+          </button>
+        </ion-col>
+        <ion-col>
+          <button (click)="search()" ion-button color="light-dark" full [disabled]="isSearching">
+            <ion-spinner *ngIf="isSearching" name="dots" margin-right></ion-spinner>
+            <ion-icon *ngIf="!isSearching" name="search" margin-right></ion-icon>Find
+          </button>
+        </ion-col>
+      </ion-row>
+
+  </ion-card-content>
+</ion-card>
+
+
+<ion-card text-left margin-top>
+  <ion-card-content>
+      Total
+      <ion-badge item-end color="primary" float-right>
+        2234
+      </ion-badge>
+  </ion-card-content>
+</ion-card>
+
+  <ion-card text-left margin-top>
+    <ion-card-header margin-bottom>
+      <ion-row>
+        <ion-col col-10 class="cursor" (click)="show()">
+          Leave much to be desired
+        </ion-col>
+        <ion-col text-right>
+          <ion-icon (click)="play('https://media.merriam-webster.com/soundc11/d/dog00002.wav')" class="cursor" name="volume-up" float-right></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          собака, собака, пёс
+          собака, собака, пёс
+          собака, собака, пёс
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card text-left margin-top>
+    <ion-card-header margin-bottom>
+      <ion-row>
+        <ion-col col-10>
+          Sever
+        </ion-col>
+        <ion-col text-right>
+          <ion-icon (click)="play('https://media.merriam-webster.com/soundc11/s/sever001.wav')" class="cursor" name="volume-up" float-right></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          Резать, отрубать
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card text-left margin-top>
+    <ion-card-header margin-bottom>
+      <ion-row>
+        <ion-col col-10>
+          Leave much to be desired
+        </ion-col>
+        <ion-col text-right>
+          <ion-icon name="volume-up" float-right></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          собака, собака, пёс
+          собака, собака, пёс
+          собака, собака, пёс
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  </ion-grid>
+</ion-content>

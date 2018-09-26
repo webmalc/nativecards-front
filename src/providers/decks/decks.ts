@@ -14,6 +14,9 @@ export class DecksProvider extends Api {
   public fetch() {
     return this.requestGet('en/decks/');
   }
+  public fetchEnabled() {
+    return this.requestGet('en/decks/?is_enabled=true');
+  }
 
   public get(id: number) {
     return this.requestGet(`en/decks/${id}/`);

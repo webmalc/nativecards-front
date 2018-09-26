@@ -11,6 +11,7 @@ import { DashboardPageModule } from '../pages/dashboard/dashboard.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { DecksPageModule } from '../pages/decks/decks.module';
 import { DeckFormPageModule } from '../pages/deck-form/deck-form.module';
+import { WordsPageModule } from '../pages/words/words.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,6 +33,7 @@ import { DashboardProvider } from '../providers/dashboard/dashboard';
     SettingsPageModule,
     DecksPageModule,
     DeckFormPageModule,
+    WordsPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

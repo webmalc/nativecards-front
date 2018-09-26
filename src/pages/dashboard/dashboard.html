@@ -8,19 +8,19 @@
     <ion-grid fixed>
         <ion-card text-left margin-top>
             <ion-card-content>
-                <form>
+                  <form (ngSubmit)="search()" #entryForm="ngForm">
                     <ion-row>
                         <ion-col>
                             <ion-list inset>
                                 <ion-item>
-                                    <ion-input type="text" placeholder="Find the word" name="word" required></ion-input>
+                                  <ion-input [(ngModel)]="query.word" type="text" placeholder="Find the word or phrase" name="word" required></ion-input>
                                 </ion-item>
                             </ion-list>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col class="signup-col">
-                            <button full ion-button color="light-dark" class="submit-btn" type="submit">
+                          <button full ion-button color="light-dark" class="submit-btn" type="submit" [disabled]="entryForm.form.invalid">
                             <ion-icon name="search" margin-right></ion-icon>Find
                             </button>
                         </ion-col>

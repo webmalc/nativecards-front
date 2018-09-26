@@ -95,6 +95,8 @@ $colors: (
 $text-color: color($colors, white);
 $spinner-ios-dots-color: $text-color;
 $spinner-md-dots-color: $text-color;
+$alert-md-button-text-color: color($colors, strong-dark);
+$alert-ios-button-text-color: color($colors, strong-dark);
 
 $screen-breakpoints: (
   xs: 0,
@@ -119,17 +121,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-ion-card {
-  form {
-    ion-item {
-      background-color: color($colors, strong-dark) !important;
-    }
-  }
-  ion-item {
-    background-color: color($colors, light-dark) !important;
-    color: color($colors, white) !important;
-  }
-}
 ion-card-header {
   color: color($colors, white) !important;
   border-bottom: 1px dashed color($colors, light-dark);
@@ -148,7 +139,23 @@ form {
     resize:none;
   }
 }
-
+ion-card {
+  form, .form {
+    ion-list {
+      margin: 0px !important;
+    }
+    ion-item {
+      background-color: color($colors, strong-dark) !important;
+    }
+  }
+  ion-item {
+    background-color: color($colors, light-dark) !important;
+    color: color($colors, white) !important;
+  }
+}
+.cursor {
+  cursor: pointer;
+}
 .danger {
   color: color($colors, danger) !important;
 }
@@ -169,6 +176,3 @@ ion-card-header.disabled {
   text-decoration: line-through;
   color: color($colors, danger) !important;
 }
-
-$alert-md-button-text-color: color($colors, strong-dark);
-$alert-ios-button-text-color: color($colors, strong-dark);
