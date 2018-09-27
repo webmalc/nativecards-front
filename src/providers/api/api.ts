@@ -28,6 +28,28 @@ export class Api {
     };
   }
 
+  public getUrlPath(uri: string): string {
+    var l = document.createElement("a");
+    l.href = uri;
+    console.log(l);
+    return l.pathname.replace(/^\//g, '') + l.search;
+  }
+
+  public updateUrlParameter(uri: string, key: string, value): string {
+    let i = uri.indexOf('#');
+    let hash = i === -1 ? '' : uri.substr(i);
+    uri = i === -1 ? uri : uri.substr(0, i);
+
+    let re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    let separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+      uri = uri.replace(re, '$1' + key + "=" + value + '$2');
+    } else {
+      uri = uri + separator + key + "=" + value;
+    }
+    return uri + hash;
+  }
+
   // Get API URL
   public getUrl(path: string) {
     return this.url + path;

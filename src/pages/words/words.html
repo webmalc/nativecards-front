@@ -5,9 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <loading [data]="words"></loading>
-
-  <ion-grid fixed>
+<ion-grid fixed>
 
 <ion-card text-left>
   <ion-card-content class="form">
@@ -29,6 +27,45 @@
                 </ion-option>
               </ion-select>
             </ion-item>
+
+            <div class="advanced-search" margin-top text-right>
+              <ion-icon class="cursor" (click)="advancedSearch=!advancedSearch;" name="settings"></ion-icon>
+            </div>
+
+
+            <div *ngIf="advancedSearch" margin-top>
+
+            <ion-item class="decks" *ngIf="decks">
+              <ion-label>Category</ion-label>
+              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
+                <ion-option value=""></ion-option>
+                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                  {{ deck.title }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="decks" *ngIf="decks">
+              <ion-label>Priority</ion-label>
+              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
+                <ion-option value=""></ion-option>
+                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                  {{ deck.title }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="decks" *ngIf="decks">
+              <ion-label>Sort by</ion-label>
+              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
+                <ion-option value=""></ion-option>
+                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                  {{ deck.title }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+            </div>
+
           </ion-list>
         </ion-col>
       </ion-row>
@@ -53,78 +90,41 @@
 </ion-card>
 
 
-<ion-card text-left margin-top>
+<loading [data]="cards"></loading>
+
+<ion-card text-left margin-top *ngIf="total !== null">
   <ion-card-content>
       Total
       <ion-badge item-end color="primary" float-right>
-        2234
+        {{ total }}
       </ion-badge>
   </ion-card-content>
 </ion-card>
 
-  <ion-card text-left margin-top>
-    <ion-card-header margin-bottom>
-      <ion-row>
-        <ion-col col-10 class="cursor" (click)="show()">
-          Leave much to be desired
-        </ion-col>
-        <ion-col text-right>
-          <ion-icon (click)="play('https://media.merriam-webster.com/soundc11/d/dog00002.wav')" class="cursor" name="volume-up" float-right></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-row>
-        <ion-col>
-          собака, собака, пёс
-          собака, собака, пёс
-          собака, собака, пёс
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
+<ion-card *ngFor="let card of cards" text-left margin-top>
+<ion-card-header margin-bottom>
+  <ion-row>
+    <ion-col col-10 class="cursor" (click)="show()">
+      {{ card.word }}
+    </ion-col>
+    <ion-col text-right *ngIf="card.pronunciation">
+      <ion-icon (click)="play(card.pronunciation)" class="cursor" name="volume-up" float-right></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-card-header>
+<ion-card-content>
+  <ion-row>
+    <ion-col>
+      {{ card.translation }}
+    </ion-col>
+  </ion-row>
+</ion-card-content>
+</ion-card>
 
-  <ion-card text-left margin-top>
-    <ion-card-header margin-bottom>
-      <ion-row>
-        <ion-col col-10>
-          Sever
-        </ion-col>
-        <ion-col text-right>
-          <ion-icon (click)="play('https://media.merriam-webster.com/soundc11/s/sever001.wav')" class="cursor" name="volume-up" float-right></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-row>
-        <ion-col>
-          Резать, отрубать
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
+<ion-infinite-scroll *ngIf="query.next" (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll-content loadingSpinner="dots">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 
-  <ion-card text-left margin-top>
-    <ion-card-header margin-bottom>
-      <ion-row>
-        <ion-col col-10>
-          Leave much to be desired
-        </ion-col>
-        <ion-col text-right>
-          <ion-icon name="volume-up" float-right></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-row>
-        <ion-col>
-          собака, собака, пёс
-          собака, собака, пёс
-          собака, собака, пёс
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-
-  </ion-grid>
+</ion-grid>
 </ion-content>
