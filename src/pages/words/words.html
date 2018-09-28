@@ -9,58 +9,54 @@
 
 <ion-card text-left>
   <ion-card-content class="form">
+    <form #searchForm="ngForm" (ngSubmit)="add()">
       <ion-row>
         <ion-col>
           <ion-list inset>
-
             <ion-item>
-              <ion-input [(ngModel)]="query.word" type="text" placeholder="Word or phrase" name="word"></ion-input>
+              <ion-input [(ngModel)]="query.word" type="text" placeholder="Word or phrase" name="word" required>
+              </ion-input>
             </ion-item>
-
-            <loading [data]="decks"></loading>
-            <ion-item class="decks" *ngIf="decks">
-              <ion-label>Deck</ion-label>
-              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
-                <ion-option value=""></ion-option>
-                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
-                  {{ deck.title }}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-
-            <div class="advanced-search" margin-top text-right>
-              <ion-icon class="cursor" (click)="advancedSearch=!advancedSearch;" name="settings"></ion-icon>
-            </div>
 
 
             <div *ngIf="advancedSearch" margin-top>
 
-            <ion-item class="decks" *ngIf="decks">
+            <loading [data]="decks"></loading>
+            <ion-item class="select" *ngIf="decks">
+              <ion-label>Deck</ion-label>
+                <ion-select interface="popover" [(ngModel)]="query.deckId" name="deckId">
+                  <ion-option value=""></ion-option>
+                  <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                    {{ deck.title }}
+                  </ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item class="select" *ngIf="decks">
               <ion-label>Category</ion-label>
-              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
+              <ion-select interface="popover" [(ngModel)]="query.category" name="category">
                 <ion-option value=""></ion-option>
-                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
-                  {{ deck.title }}
+                <ion-option *ngFor="let category of query.categories" value="{{ category.value }}">
+                  {{ category.title }}
                 </ion-option>
               </ion-select>
             </ion-item>
 
-            <ion-item class="decks" *ngIf="decks">
+            <ion-item class="select" *ngIf="decks">
               <ion-label>Priority</ion-label>
-              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
+              <ion-select interface="popover" [(ngModel)]="query.priority" name="priority">
                 <ion-option value=""></ion-option>
-                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
-                  {{ deck.title }}
+                <ion-option *ngFor="let priority of query.priorities" value="{{ priority.value }}">
+                  {{ priority.title }}
                 </ion-option>
               </ion-select>
             </ion-item>
 
-            <ion-item class="decks" *ngIf="decks">
+            <ion-item class="select" *ngIf="decks">
               <ion-label>Sort by</ion-label>
-              <ion-select interface="popover" [(ngModel)]="query.deckId" name="=deckId">
-                <ion-option value=""></ion-option>
-                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
-                  {{ deck.title }}
+              <ion-select interface="popover" [(ngModel)]="query.sortBy" name="sortBy">
+                <ion-option *ngFor="let sort of query.sortings" value="{{ sort.value }}">
+                  {{ sort.title }}
                 </ion-option>
               </ion-select>
             </ion-item>
@@ -71,21 +67,19 @@
       </ion-row>
 
       <ion-row>
-
         <ion-col>
-          <button (click)="add()" ion-button color="light-dark" full [disabled]="isSearching">
-            <ion-spinner *ngIf="isSearching" name="dots" margin-right></ion-spinner>
-            <ion-icon *ngIf="!isSearching" name="add" margin-right></ion-icon>Add
+          <button ion-button color="light-dark" full [disabled]="isSearching || searchForm.form.invalid" type="submit">
+            <ion-icon  name="add" margin-right></ion-icon>Add the word
           </button>
         </ion-col>
-        <ion-col>
-          <button (click)="search()" ion-button color="light-dark" full [disabled]="isSearching">
-            <ion-spinner *ngIf="isSearching" name="dots" margin-right></ion-spinner>
-            <ion-icon *ngIf="!isSearching" name="search" margin-right></ion-icon>Find
+        <ion-col col-2 class="advanced-search">
+          <button type="button" (click)="advancedSearch=!advancedSearch;" ion-button color="dark" full>
+            <ion-icon class="cursor" (click)="advancedSearch=!advancedSearch;" name="settings"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
 
+    </form>
   </ion-card-content>
 </ion-card>
 

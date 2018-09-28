@@ -1,8 +1,23 @@
+import { SelectValue } from './base';
+import { Card } from './card';
+
 export class Query {
+
+  public sortings: Array<SelectValue> = Card.sortBy;
+
+  public priorities: Array<SelectValue> = Card.priorities;
+
+  public categories: Array<SelectValue> = Card.categories;
 
   public word: string;
 
   public deckId: number;
+
+  public sortBy: string = 'word';
+
+  public priority: number;
+
+  public category: string;
 
   public action: string;
 

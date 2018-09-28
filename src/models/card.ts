@@ -1,6 +1,29 @@
-import { Base } from './base'
+import { Base, SelectValue } from './base'
 
 export class Card extends Base {
+
+  static categories: Array<SelectValue> = [
+    new SelectValue('word', 'word'),
+    new SelectValue('phrase', 'phrase'),
+    new SelectValue('phrasal verb', 'phrasal_verb'),
+  ]
+
+  static priorities: Array<SelectValue> = [
+    new SelectValue('very low', 0),
+    new SelectValue('low', 1),
+    new SelectValue('normal', 2),
+    new SelectValue('high', 3),
+    new SelectValue('very high', 4),
+  ]
+
+  static sortBy: Array<SelectValue> = [
+    new SelectValue('word ⇑', 'word'),
+    new SelectValue('word ⇓', '-word'),
+    new SelectValue('complete ⇑', 'complete'),
+    new SelectValue('complete ⇓', '-complete'),
+    new SelectValue('priority ⇑', 'priority'),
+    new SelectValue('priority ⇓', '-priority'),
+  ]
 
   public word: string;
 

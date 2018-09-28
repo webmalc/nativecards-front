@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DecksProvider } from '../../providers/decks/decks'
@@ -15,12 +15,20 @@ import { Card } from '../../models/card';
 })
 export class WordsPage extends BasePage {
 
+  @ViewChild('searchForm') form;
+
   public query: Query;
+
   public total: number;
+
   public decks: Array<Deck>;
+
   public cards: Array<Card>;
+
   public isSearching: boolean = false;
+
   public advancedSearch: boolean = false;
+
 
   constructor(
     public navCtrl: NavController,
@@ -45,7 +53,13 @@ export class WordsPage extends BasePage {
     }, error => {
       this.showMessage()
     });
+
     this.search();
+
+    this.form.control.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .subscribe(values => this.search());
   }
 
   // Search for a card
