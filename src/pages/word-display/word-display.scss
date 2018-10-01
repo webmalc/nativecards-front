@@ -1,0 +1,25 @@
+page-word-display {
+  .card-image {
+    width: 150px;
+    display: inline-block;
+  }
+  .card-col {
+    max-width: 170px;
+  }
+  .card-note {
+    background-color: color($colors, light-dark);
+    padding: 10px;
+  }
+  .card-word::first-letter {
+    text-transform: uppercase;
+  }
+  .card-text {
+    ion-card-content {
+      p {
+        display: list-item;
+        list-style-type: square;
+        list-style-position: inside;
+      }
+    }
+  }
+}

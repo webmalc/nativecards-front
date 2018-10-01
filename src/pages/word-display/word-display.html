@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle *ngIf="menu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <loading [data]="card"></loading>
+  <ion-grid fixed *ngIf="card">
+
+  <ion-card text-left margin-top>
+    <ion-card-header margin-bottom>
+      <ion-row>
+        <ion-col col-10 class="card-word">
+          {{ card.word }}
+        </ion-col>
+        <ion-col text-right *ngIf="card.pronunciation">
+          <ion-icon (click)="play(card.pronunciation)" class="cursor" name="volume-up" float-right></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-12 col-md-3 col-lg-3 col-xl-2 col-sm-12 *ngIf="card.image">
+          <img class="card-image" src="{{card.image}}">
+        </ion-col>
+        <ion-col>
+          <p *ngIf="card.transcription">
+            {{ card.transcription }}
+          </p>
+          <p>{{ card.translation }}</p>
+          <div class="card-note" margin-top *ngIf="card.note" [innerHTML]="card.note">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-text" text-left margin-top *ngIf="card.definition">
+    <ion-card-header margin-bottom>
+        Definition
+    </ion-card-header>
+    <ion-card-content [innerHTML]="card.definition">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-text" text-left margin-top *ngIf="card.examples">
+    <ion-card-header margin-bottom>
+      Examples
+    </ion-card-header>
+    <ion-card-content [innerHTML]="card.examples">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-text" text-left margin-top *ngIf="card.synonyms">
+    <ion-card-header margin-bottom>
+    Synonyms
+    </ion-card-header>
+    <ion-card-content [innerHTML]="card.synonyms">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-text" text-left margin-top *ngIf="card.antonyms">
+    <ion-card-header margin-bottom>
+      Antonyms
+    </ion-card-header>
+    <ion-card-content [innerHTML]="card.antonyms">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-text" text-left margin-top>
+    <ion-card-header margin-bottom>
+      Miscellaneous
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        priority
+        <ion-badge item-end color="primary">
+          {{ card.priorityDisplay }}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        complete
+        <ion-badge item-end color="primary">
+          {{ card.complete }}%
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        category
+        <ion-badge item-end color="dark">
+          {{ card.category }}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        deck
+        <ion-badge item-end color="dark">
+          {{ card.deck }}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        is enabled?
+        <ion-badge item-end color="primary">
+          {{ card.isEnabled }}
+        </ion-badge>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  </ion-grid>
+</ion-content>

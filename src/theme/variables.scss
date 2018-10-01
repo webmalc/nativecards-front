@@ -172,6 +172,11 @@ ion-card {
     margin-left: 4px;
   }
 }
+ion-card-content {
+  p {
+    padding: 4px 0px;
+  }
+}
 ion-card-header.disabled {
   text-decoration: line-through;
   color: color($colors, danger) !important;

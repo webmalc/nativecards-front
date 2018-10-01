@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { WordsPage } from './words';
 import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module'
-import { DecksProvider } from '../../providers/decks/decks'
+import { WordDisplayPage } from './word-display';
 import { CardsProvider } from '../../providers/cards/cards'
+import { DecksProvider } from '../../providers/decks/decks'
 
 @NgModule({
   declarations: [
-    WordsPage,
+    WordDisplayPage,
   ],
   imports: [
     ComponentsModule,
     DirectivesModule,
-    IonicPageModule.forChild(WordsPage),
+    IonicPageModule.forChild(WordDisplayPage),
   ],
   providers: [
     DecksProvider,
     CardsProvider,
   ],
 })
-export class WordsPageModule { }
+export class WordDisplayPageModule { }

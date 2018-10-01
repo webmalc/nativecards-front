@@ -69,7 +69,7 @@
       <ion-row>
         <ion-col>
           <button ion-button color="light-dark" full [disabled]="isSearching || searchForm.form.invalid" type="submit">
-            <ion-icon  name="add" margin-right></ion-icon>Add the word
+            <ion-icon  name="add" margin-right></ion-icon>Add the card
           </button>
         </ion-col>
         <ion-col col-2 class="advanced-search">
@@ -95,14 +95,14 @@
   </ion-card-content>
 </ion-card>
 
-<ion-card *ngFor="let card of cards" text-left margin-top>
-<ion-card-header margin-bottom>
+<ion-card *ngFor="let card of cards" text-left margin-top (click)="display(card)" class="cursor">
+  <ion-card-header margin-bottom>
   <ion-row>
-    <ion-col col-10 class="cursor" (click)="show()">
+    <ion-col col-10>
       {{ card.word }}
     </ion-col>
     <ion-col text-right *ngIf="card.pronunciation">
-      <ion-icon (click)="play(card.pronunciation)" class="cursor" name="volume-up" float-right></ion-icon>
+      <ion-icon click-stop-propagation (click)="play(card.pronunciation)" class="cursor" name="volume-up" float-right></ion-icon>
     </ion-col>
   </ion-row>
 </ion-card-header>

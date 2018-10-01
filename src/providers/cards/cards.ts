@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Api } from '../api/api';
 import { Storage } from '@ionic/storage';
 import { Query } from '../../models/query';
+import { Card } from '../../models/card';
 
 @Injectable()
 export class CardsProvider extends Api {
@@ -32,4 +33,23 @@ export class CardsProvider extends Api {
 
     return this.requestGet(path);
   }
+
+  public get(id: number) {
+    return this.requestGet(`en/cards/${id}/`);
+  }
+
+  public delete(card: Card) {
+    return this.requestDelete(`en/decks/${card.id}/`);
+  }
+
+  public save(card: Card) {
+    delete card.remoteImage;
+
+    if (card.id) {
+      return this.requestPatch(`en/decks/${card.id}/`, card);
+    } else {
+      return this.requestPost(`en/decks/`, card);
+    }
+  }
+
 }

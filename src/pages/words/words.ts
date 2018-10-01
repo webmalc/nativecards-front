@@ -7,6 +7,7 @@ import { BasePage } from '../../lib/page';
 import { Query } from '../../models/query';
 import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
+import { WordDisplayPage } from '../word-display/word-display';
 
 @IonicPage()
 @Component({
@@ -92,16 +93,13 @@ export class WordsPage extends BasePage {
     });
   }
 
-  // Show the word
-  public show() {
-    console.log('show');
+  // Display the word
+  public display(card: Card) {
+    this.navCtrl.push(WordDisplayPage, { 'card': card });
   }
 
   // Play the audio file
   public play(url: string) {
-    let audio = new Audio();
-    audio.src = url;
-    audio.load();
-    audio.play();
+    Card.playAudio(url);
   }
 }

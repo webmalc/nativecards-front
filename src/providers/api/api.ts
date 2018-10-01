@@ -31,7 +31,6 @@ export class Api {
   public getUrlPath(uri: string): string {
     var l = document.createElement("a");
     l.href = uri;
-    console.log(l);
     return l.pathname.replace(/^\//g, '') + l.search;
   }
 

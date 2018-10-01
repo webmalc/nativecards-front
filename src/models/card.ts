@@ -58,4 +58,12 @@ export class Card extends Base {
   public remoteImage: string;
 
   public lastShowedAt: string;
+
+  // Play the audio file with pronunciation
+  static playAudio(url: string) {
+    let audio = new Audio();
+    audio.src = url;
+    audio.load();
+    audio.play();
+  }
 }
