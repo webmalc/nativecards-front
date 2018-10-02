@@ -6,6 +6,7 @@ import { DecksProvider } from '../../providers/decks/decks'
 import { CardsProvider } from '../../providers/cards/cards'
 import { Card } from '../../models/card';
 import { Deck } from '../../models/deck';
+import { WordFormPage } from '../word-form/word-form'
 
 @IonicPage()
 @Component({
@@ -49,6 +50,11 @@ export class WordDisplayPage extends BasePage {
     }, error => {
       this.showMessage()
     });
+  }
+
+  // Edit the card
+  public edit() {
+    this.navCtrl.push(WordFormPage, { 'card': this.card });
   }
 
   public getColor(value: number, max: number = 100) {

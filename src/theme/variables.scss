@@ -181,3 +181,8 @@ ion-card-header.disabled {
   text-decoration: line-through;
   color: color($colors, danger) !important;
 }
+ion-content.sidebar {
+  .item-inner {
+    border-bottom: 0px !important;
+  }
+}

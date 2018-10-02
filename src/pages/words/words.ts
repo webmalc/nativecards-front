@@ -8,6 +8,7 @@ import { Query } from '../../models/query';
 import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
 import { WordDisplayPage } from '../word-display/word-display';
+import { WordFormPage } from '../word-form/word-form'
 
 @IonicPage()
 @Component({
@@ -70,6 +71,8 @@ export class WordsPage extends BasePage {
     this.isSearching = true;
     this.query.next = null;
     this.cardsProvider.fetch(this.query).subscribe(words => {
+      // TODO: remove
+      this.navCtrl.push(WordFormPage, { 'card': words.results[0] });
       this.isSearching = false;
       this.cards = words.results;
       this.total = words.count;

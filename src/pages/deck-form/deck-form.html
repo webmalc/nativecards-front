@@ -62,9 +62,9 @@
 </ion-content>
 
 
-<ion-footer no-border text-center *ngIf="deck && id && !deck.isDefault">
+<ion-footer no-border text-center *ngIf="id">
   <ion-toolbar>
-    <button ion-button color="dark" (click)="delete()">
+    <button ion-button color="dark" (click)="delete()" *ngIf="deck && !deck.isDefault">
       <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
       <ion-icon *ngIf="!isSaving" name="trash" margin-right></ion-icon>
       Delete the deck

@@ -112,3 +112,13 @@
 
   </ion-grid>
 </ion-content>
+
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <button ion-button color="dark" *ngIf="card" (click)="edit()">
+      <ion-icon name="create" margin-right></ion-icon>
+      Edit the card
+    </button>
+  </ion-toolbar>
+</ion-footer>
