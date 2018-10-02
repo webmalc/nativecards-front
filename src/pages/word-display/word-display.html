@@ -72,38 +72,39 @@
   </ion-card>
 
   <ion-card class="card-text" text-left margin-top>
-    <ion-card-header margin-bottom>
-      Miscellaneous
-    </ion-card-header>
     <ion-card-content>
       <ion-item>
         priority
-        <ion-badge item-end color="primary">
+        <ion-badge item-end color="{{ getColor(card.priority, 4) }}">
           {{ card.priorityDisplay }}
         </ion-badge>
       </ion-item>
       <ion-item>
         complete
-        <ion-badge item-end color="primary">
+        <ion-badge item-end color="{{ getColor(card.complete, 100) }}">
           {{ card.complete }}%
         </ion-badge>
       </ion-item>
       <ion-item>
         category
         <ion-badge item-end color="dark">
-          {{ card.category }}
+          {{ card.categoryDisplay }}
         </ion-badge>
       </ion-item>
-      <ion-item>
+
+      <loading [data]="deck"></loading>
+      <ion-item *ngIf="deck">
         deck
         <ion-badge item-end color="dark">
-          {{ card.deck }}
+          {{ deck.title }}
         </ion-badge>
       </ion-item>
+
       <ion-item>
         is enabled?
-        <ion-badge item-end color="primary">
-          {{ card.isEnabled }}
+        <ion-badge item-end color="dark">
+          <ion-icon *ngIf="!card.isEnabled" name="close" color="danger"></ion-icon>
+          <ion-icon *ngIf="card.isEnabled" name="checkmark" color="primary"></ion-icon>
         </ion-badge>
       </ion-item>
     </ion-card-content>

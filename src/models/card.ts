@@ -29,6 +29,8 @@ export class Card extends Base {
 
   public category: string;
 
+  public categoryDisplay: string;
+
   public definition: string;
 
   public examples: string;
