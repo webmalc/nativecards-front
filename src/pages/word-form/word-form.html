@@ -23,24 +23,31 @@
               <ion-list inset>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.title" stacked>
+                  <ion-label [class.danger]="errors.word" stacked>
                     Word or phrase
                   </ion-label>
                   <ion-input type="text" [(ngModel)]="card.word" name="word" required pattern=".{2,}"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.title" stacked>
+                  <ion-label [class.danger]="errors.transcription" stacked>
                     Transcription
                   </ion-label>
                   <ion-input type="text" [(ngModel)]="card.transcription" name="transcription" pattern=".{2,}"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.title" stacked>
+                  <ion-label [class.danger]="errors.translation" stacked>
                     Translation
                   </ion-label>
                   <ion-input type="text" [(ngModel)]="card.translation" name="translation" pattern=".{2,}"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.note" stacked>
+                    Note
+                  </ion-label>
+                  <ion-textarea rows="3" [(ngModel)]="card.note" name="note"></ion-textarea>
                 </ion-item>
 
               </ion-list>
@@ -54,26 +61,41 @@
               <ion-list inset>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.title" stacked>
+                  <ion-label [class.danger]="errors.definition" stacked>
                      Defenition
                   </ion-label>
-                  <ion-textarea rows="7" [(ngModel)]="card.definition" name="word" required pattern=".{2,}"></ion-textarea>
+                  <ion-textarea rows="7" [(ngModel)]="card.definition" name="definition"></ion-textarea>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.title" stacked>
-                    Transcription
+                  <ion-label [class.danger]="errors.examples" stacked>
+                    Examples
                   </ion-label>
-                  <ion-input type="text" [(ngModel)]="card.transcription" name="transcription" pattern=".{2,}"></ion-input>
+                  <ion-textarea rows="7" [(ngModel)]="card.examples" name="examples"></ion-textarea>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <h4>Other words</h4>
+
+          <ion-row>
+            <ion-col>
+              <ion-list inset>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.synonyms" stacked>
+                    Synonyms
+                  </ion-label>
+                  <ion-textarea rows="3" [(ngModel)]="card.synonyms" name="synonyms"></ion-textarea>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.title" stacked>
-                    Translation
+                  <ion-label [class.danger]="errors.antonyms" stacked>
+                    Antonyms
                   </ion-label>
-                  <ion-input type="text" [(ngModel)]="card.translation" name="translation" pattern=".{2,}"></ion-input>
+                  <ion-textarea rows="3" [(ngModel)]="card.antonyms" name="antonyms"></ion-textarea>
                 </ion-item>
-
               </ion-list>
             </ion-col>
           </ion-row>

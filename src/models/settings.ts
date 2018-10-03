@@ -9,4 +9,6 @@ export class Settings extends Base {
   public cardsToRepeat: number;
 
   public lessonLatestDays: number;
+
+  public playAudioOnOpen: boolean;
 }

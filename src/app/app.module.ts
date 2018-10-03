@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -27,6 +28,7 @@ import { DashboardProvider } from '../providers/dashboard/dashboard';
   ],
   imports: [
     HttpClientModule,
+    MarkdownModule.forRoot(),
     BrowserModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),

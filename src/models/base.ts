@@ -24,4 +24,8 @@ export class Base {
   public modified_by: string;
 
   public isEnabled: boolean = true;
+
+  static getInstance(data: any): any {
+    return data;
+  }
 }

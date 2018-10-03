@@ -32,7 +32,7 @@
             {{ card.transcription }}
           </p>
           <p>{{ card.translation }}</p>
-          <div class="card-note" margin-top *ngIf="card.note" [innerHTML]="card.note">
+          <div class="card-note" margin-top *ngIf="card.note" [innerHTML]="card.note|markdown">
           </div>
         </ion-col>
       </ion-row>
@@ -43,7 +43,7 @@
     <ion-card-header margin-bottom>
         Definition
     </ion-card-header>
-    <ion-card-content [innerHTML]="card.definition">
+    <ion-card-content [innerHTML]="card.definition|markdown">
     </ion-card-content>
   </ion-card>
 
@@ -51,7 +51,7 @@
     <ion-card-header margin-bottom>
       Examples
     </ion-card-header>
-    <ion-card-content [innerHTML]="card.examples">
+    <ion-card-content [innerHTML]="card.examples|markdown">
     </ion-card-content>
   </ion-card>
 
@@ -59,7 +59,7 @@
     <ion-card-header margin-bottom>
     Synonyms
     </ion-card-header>
-    <ion-card-content [innerHTML]="card.synonyms">
+    <ion-card-content [innerHTML]="card.synonyms|markdown">
     </ion-card-content>
   </ion-card>
 
@@ -67,7 +67,7 @@
     <ion-card-header margin-bottom>
       Antonyms
     </ion-card-header>
-    <ion-card-content [innerHTML]="card.antonyms">
+    <ion-card-content [innerHTML]="card.antonyms|markdown">
     </ion-card-content>
   </ion-card>
 

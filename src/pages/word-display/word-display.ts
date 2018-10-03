@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Observable } from 'rxjs/Rx';
 import { BasePage } from '../../lib/page';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DecksProvider } from '../../providers/decks/decks'
 import { CardsProvider } from '../../providers/cards/cards'
+import { SettingsProvider } from '../../providers/settings/settings'
 import { Card } from '../../models/card';
 import { Deck } from '../../models/deck';
+import { Settings } from '../../models/settings';
 import { WordFormPage } from '../word-form/word-form'
 
 @IonicPage()
@@ -16,6 +19,7 @@ import { WordFormPage } from '../word-form/word-form'
 export class WordDisplayPage extends BasePage {
 
   public card: Card;
+  public settings: Settings;
   public deck: Deck;
   public title: string;
   public id: number;
@@ -29,6 +33,7 @@ export class WordDisplayPage extends BasePage {
     public loadingCtrl: LoadingController,
     public decksProvider: DecksProvider,
     public cardsProvider: CardsProvider,
+    public settingsProvider: SettingsProvider,
   ) {
     super(navCtrl, toastCtrl, loadingCtrl, auth);
     let card = this.params.get('card');
@@ -39,8 +44,16 @@ export class WordDisplayPage extends BasePage {
 
   ionViewDidLoad() {
     this.card = null;
-    this.cardsProvider.get(this.id).subscribe(card => {
-      this.card = card;
+
+    Observable.forkJoin(
+      this.cardsProvider.get(this.id),
+      this.settingsProvider.fetch(),
+    ).subscribe(data => {
+      this.card = Card.getInstance(data[0]);
+      this.settings = Settings.getInstance(data[1]);
+      if (this.card.pronunciation && this.settings.playAudioOnOpen) {
+        this.play(this.card.pronunciation);
+      }
     }, error => {
       this.showMessage()
     });

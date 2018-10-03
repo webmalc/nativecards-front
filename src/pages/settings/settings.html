@@ -35,6 +35,11 @@
                   <ion-input type="number" [(ngModel)]="settings.lessonLatestDays" name="lessonLatestDays" min="5" required></ion-input>
                 </ion-item>
 
+                <ion-item>
+                  <ion-label [class.danger]="errors.playAudioOnOpen">Play audio on card opening</ion-label>
+                  <ion-checkbox [(ngModel)]="settings.playAudioOnOpen" color="strong-dark" name="playAudioOnOpen"></ion-checkbox>
+                </ion-item>
+
               </ion-list>
             </ion-col>
           </ion-row>
