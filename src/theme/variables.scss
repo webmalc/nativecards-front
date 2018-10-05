@@ -186,3 +186,10 @@ ion-content.sidebar {
     border-bottom: 0px !important;
   }
 }
+.item-checkbox {
+  text-transform: none !important;
+  font-size: 1.2rem !important;
+}
+.item-md.item-checkbox {
+  color: #999 !important;
+}

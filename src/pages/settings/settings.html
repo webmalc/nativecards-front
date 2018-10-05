@@ -36,7 +36,7 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.playAudioOnOpen">Play audio on card opening</ion-label>
+                  <ion-label [class.danger]="errors.playAudioOnOpen">Play audio</ion-label>
                   <ion-checkbox [(ngModel)]="settings.playAudioOnOpen" color="strong-dark" name="playAudioOnOpen"></ion-checkbox>
                 </ion-item>
 
@@ -46,7 +46,7 @@
 
           <ion-row>
             <ion-col class="signup-col">
-              <button ion-button color="dark" class="submit-btn" full type="submit" [disabled]="entryForm.form.invalid || isSaving">
+              <button ion-button color="light-dark" class="submit-btn" full type="submit" [disabled]="entryForm.form.invalid || isSaving">
                 <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
                 <ion-icon *ngIf="!isSaving" name="checkmark-circle" margin-right></ion-icon>
                 Save

@@ -72,7 +72,7 @@ export class WordsPage extends BasePage {
     this.query.next = null;
     this.cardsProvider.fetch(this.query).subscribe(words => {
       // TODO: remove
-      this.navCtrl.push(WordFormPage, { 'card': words.results[0] });
+      // this.navCtrl.push(WordFormPage, { 'card': words.results[0] });
       this.isSearching = false;
       this.cards = words.results;
       this.total = words.count;

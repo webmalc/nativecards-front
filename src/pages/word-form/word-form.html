@@ -102,7 +102,14 @@
 
           <ion-row>
             <ion-col class="signup-col">
-              <button ion-button color="dark" class="submit-btn" full type="submit" [disabled]="entryForm.form.invalid || isSaving">
+              <button ion-button type="button" full color="dark" (click)="delete()" *ngIf="card">
+                <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
+                <ion-icon *ngIf="!isSaving" name="trash" margin-right></ion-icon>
+                Delete
+              </button>
+            </ion-col>
+            <ion-col class="signup-col">
+              <button ion-button color="light-dark" class="submit-btn" full type="submit" [disabled]="entryForm.form.invalid || isSaving">
                 <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
                 <ion-icon *ngIf="!isSaving" name="checkmark-circle" margin-right></ion-icon>
                 Save
@@ -115,13 +122,3 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-<ion-footer no-border text-center *ngIf="id">
-  <ion-toolbar>
-    <button ion-button color="dark" (click)="delete()" *ngIf="card">
-      <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
-      <ion-icon *ngIf="!isSaving" name="trash" margin-right></ion-icon>
-      Delete the card
-    </button>
-  </ion-toolbar>
-</ion-footer>
