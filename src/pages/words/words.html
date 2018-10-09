@@ -14,7 +14,7 @@
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input [(ngModel)]="query.word" type="text" placeholder="Word or phrase" name="word" required>
+              <ion-input autofocus [(ngModel)]="query.word" type="text" placeholder="Word or phrase" name="word" required>
               </ion-input>
             </ion-item>
 
@@ -122,3 +122,9 @@
 
 </ion-grid>
 </ion-content>
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <button ion-button>Practice</button>
+  </ion-toolbar>
+</ion-footer>

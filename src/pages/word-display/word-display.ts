@@ -42,7 +42,7 @@ export class WordDisplayPage extends BasePage {
     this.title = `Display card "${card.word}"`;
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.card = null;
 
     Observable.forkJoin(

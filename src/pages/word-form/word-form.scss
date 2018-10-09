@@ -1,3 +1,16 @@
 page-word-form {
-
+  .images {
+    .selected-image {
+      background-color: #333;
+      border-radius: 2px;
+    }
+    .current-image {
+      background-color: #111;
+    }
+    img {
+      margin: 0px 7px 7px 0px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
 }

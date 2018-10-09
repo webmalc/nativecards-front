@@ -4,6 +4,7 @@ import { Api } from '../api/api';
 import { Storage } from '@ionic/storage';
 import { Query } from '../../models/query';
 import { Card } from '../../models/card';
+import { plainToClass } from "class-transformer";
 
 @Injectable()
 export class CardsProvider extends Api {
@@ -35,21 +36,30 @@ export class CardsProvider extends Api {
   }
 
   public get(id: number) {
-    return this.requestGet(`en/cards/${id}/`);
+    return this.requestGet(`en/cards/${id}/`).map(res => {
+      return plainToClass(Card, res);
+    });
   }
 
   public delete(card: Card) {
-    return this.requestDelete(`en/decks/${card.id}/`);
+    return this.requestDelete(`en/cards/${card.id}/`);
   }
 
   public save(card: Card) {
-    delete card.remoteImage;
+    let request = null;
 
-    if (card.id) {
-      return this.requestPatch(`en/decks/${card.id}/`, card);
-    } else {
-      return this.requestPost(`en/decks/`, card);
+    if (card.image) {
+      delete card.remoteImage;
+      delete card.image;
     }
+    if (card.id) {
+      request = this.requestPatch(`en/cards/${card.id}/`, card);
+    } else {
+      request = this.requestPost(`en/cards/`, card);
+    }
+    return request.map(res => {
+      return plainToClass(Card, res);
+    });
   }
 
 }

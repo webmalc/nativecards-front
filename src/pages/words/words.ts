@@ -8,7 +8,7 @@ import { Query } from '../../models/query';
 import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
 import { WordDisplayPage } from '../word-display/word-display';
-import { WordFormPage } from '../word-form/word-form'
+import { WordFormPage } from '../word-form/word-form';
 
 @IonicPage()
 @Component({
@@ -71,8 +71,6 @@ export class WordsPage extends BasePage {
     this.isSearching = true;
     this.query.next = null;
     this.cardsProvider.fetch(this.query).subscribe(words => {
-      // TODO: remove
-      // this.navCtrl.push(WordFormPage, { 'card': words.results[0] });
       this.isSearching = false;
       this.cards = words.results;
       this.total = words.count;
@@ -99,6 +97,11 @@ export class WordsPage extends BasePage {
   // Display the word
   public display(card: Card) {
     this.navCtrl.push(WordDisplayPage, { 'card': card });
+  }
+
+  // Add the word
+  public add() {
+    this.navCtrl.push(WordFormPage, { 'word': this.query.word });
   }
 
   // Play the audio file

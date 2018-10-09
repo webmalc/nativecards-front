@@ -3,7 +3,10 @@
     <button ion-button menuToggle *ngIf="menu">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{ title }}</ion-title>
+    <ion-title>
+      <ion-icon class="cursor" name="refresh" (click)="refresh()" margin-right></ion-icon>
+      {{ title }}
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +19,17 @@
       <ion-col>
         <form (ngSubmit)="save()" #entryForm="ngForm">
 
-          <h4>General</h4>
+          <h4>
+          <ion-row>
+            <ion-col col-10 class="card-word">
+              General
+            </ion-col>
+            <ion-col text-right>
+              <ion-spinner *ngIf="isLoadingDictionary" name="dots"></ion-spinner>
+              <ion-icon *ngIf="card.pronunciation" (click)="play(card.pronunciation)" class="cursor" name="volume-up" float-right></ion-icon>
+            </ion-col>
+          </ion-row>
+          </h4>
 
           <ion-row>
             <ion-col>
@@ -100,9 +113,63 @@
             </ion-col>
           </ion-row>
 
+          <h4>Options</h4>
+
           <ion-row>
-            <ion-col class="signup-col">
-              <button ion-button type="button" full color="dark" (click)="delete()" *ngIf="card">
+            <ion-col>
+              <ion-list inset>
+
+                <ion-item class="select" *ngIf="decks">
+                  <ion-label [class.danger]="errors.deck">Deck</ion-label>
+                  <ion-select interface="popover" [(ngModel)]="card.deck" name="deck" required>
+                    <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                      {{ deck.title }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item class="select">
+                  <ion-label [class.danger]="errors.priority">Priority</ion-label>
+                  <ion-select interface="popover" [(ngModel)]="card.priority" name="priority" required>
+                    <ion-option *ngFor="let priority of card.getPriorities()" value="{{ priority.value }}">
+                      {{ priority.title }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item class="select">
+                  <ion-label [class.danger]="errors.category">Category</ion-label>
+                  <ion-select interface="popover" [(ngModel)]="card.category" name="category" required>
+                    <ion-option *ngFor="let category of card.getCategories()" value="{{ category.value }}">
+                      {{ category.title }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.isEnabled">Is enabled?</ion-label>
+                  <ion-checkbox [(ngModel)]="card.isEnabled" color="strong-dark" name="isEnabled"></ion-checkbox>
+                </ion-item>
+
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <h4 *ngIf="images && images.length">Select image</h4>
+
+          <loading *ngIf="card.word" [data]="images"></loading>
+
+          <ion-row *ngIf="images" text-center class="images">
+            <ion-col>
+              <img *ngIf="selectedImage" src="{{ selectedImage }}" class="selected-image current-image">
+              <img src="{{ image.previewUrl }}" *ngFor="let image of images" [class.selected-image]="image.isSelected" (click)="selectImage(image)">
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="signup-col"  *ngIf="card && id">
+              <button ion-button type="button" full color="dark" (click)="delete()">
                 <ion-spinner *ngIf="isSaving" name="dots" margin-right></ion-spinner>
                 <ion-icon *ngIf="!isSaving" name="trash" margin-right></ion-icon>
                 Delete

@@ -29,6 +29,7 @@ export class DecksProvider extends Api {
 
   public save(deck: Deck) {
     delete deck.remoteImage;
+    delete deck.image;
 
     if (deck.id) {
       return this.requestPatch(`en/decks/${deck.id}/`, deck);

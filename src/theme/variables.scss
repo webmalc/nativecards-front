@@ -190,6 +190,13 @@ ion-content.sidebar {
   text-transform: none !important;
   font-size: 1.2rem !important;
 }
+
 .item-md.item-checkbox {
   color: #999 !important;
+}
+
+ion-item.select {
+  ion-label {
+    font-size: 1.2rem !important;
+  }
 }

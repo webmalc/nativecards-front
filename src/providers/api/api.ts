@@ -16,7 +16,6 @@ export class Api {
     'modified',
     'created_by',
     'modified_by',
-    'image',
   ]
 
   public constructor(protected http: HttpClient, protected storage: Storage) {

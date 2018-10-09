@@ -1,4 +1,5 @@
 import { Base, SelectValue } from './base'
+import { Deck } from './deck'
 
 export class Card extends Base {
 
@@ -23,11 +24,21 @@ export class Card extends Base {
     new SelectValue('complete ⇓', '-complete'),
     new SelectValue('priority ⇑', 'priority'),
     new SelectValue('priority ⇓', '-priority'),
+    new SelectValue('created ⇑', 'created'),
+    new SelectValue('created ⇓', '-created'),
   ]
+
+  public getPriorities(): Array<SelectValue> {
+    return Card.priorities;
+  }
+
+  public getCategories(): Array<SelectValue> {
+    return Card.categories;
+  }
 
   public word: string;
 
-  public category: string;
+  public category: string = 'word';
 
   public categoryDisplay: string;
 
@@ -47,7 +58,7 @@ export class Card extends Base {
 
   public complete: number;
 
-  public priority: number;
+  public priority: number = 2;
 
   public priorityDisplay: string;
 
@@ -67,5 +78,33 @@ export class Card extends Base {
     audio.src = url;
     audio.load();
     audio.play();
+  }
+
+  static setDefaults(card: Card): Card {
+    let loading = 'loading...';
+    card.translation = loading;
+    card.transcription = loading;
+    card.definition = loading;
+    card.examples = loading;
+    card.antonyms = loading;
+    card.synonyms = loading;
+    return card;
+  }
+
+  static getDefaultInstance(word: string): Card {
+    let card = new Card();
+    card.word = word;
+    card = Card.setDefaults(card);
+
+    return card;
+  }
+
+  public setDefalutDeck(decks: Array<Deck>) {
+    let defaultDecks = decks.filter((deck) => {
+      return deck.isDefault;
+    });
+    if (defaultDecks.length) {
+      this.deck = defaultDecks[0].id;
+    }
   }
 }

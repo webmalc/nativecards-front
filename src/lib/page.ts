@@ -1,4 +1,4 @@
-import { NavController, ToastController, LoadingController, Loading, } from 'ionic-angular';
+import { NavController, ToastController, LoadingController, Loading } from 'ionic-angular';
 
 import { AuthProvider } from '../providers/auth/auth';
 import { User } from '../models/user';
