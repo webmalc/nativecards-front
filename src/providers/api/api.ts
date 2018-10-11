@@ -11,11 +11,16 @@ export class Api {
 
   protected url: string;
 
-  protected excludedFields = [
+  protected excludedFields: Array<string> = [
     'created',
     'modified',
     'created_by',
     'modified_by',
+  ]
+
+  protected excludedAuthPaths: Array<string> = [
+    'api-token-refresh/',
+    'api-token-auth/',
   ]
 
   public constructor(protected http: HttpClient, protected storage: Storage) {
@@ -66,8 +71,10 @@ export class Api {
 
     return Observable.create(observer => {
       this.storage.get('user').then(user => {
-        if (user) {
-          options.headers = options.headers.set('Authorization', 'JWT ' + user.token);
+        if (user && this.excludedAuthPaths.indexOf(path) == -1) {
+          options.headers = options.headers.set(
+            'Authorization', 'JWT ' + user.token
+          );
         }
         let http = this.http.get(url, options);
         switch (type) {
