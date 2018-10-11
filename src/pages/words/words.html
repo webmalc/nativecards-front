@@ -12,7 +12,7 @@
     <form #searchForm="ngForm" (ngSubmit)="add()">
       <ion-row>
         <ion-col>
-          <ion-list inset>
+          <ion-list>
             <ion-item>
               <ion-input autofocus [(ngModel)]="query.word" type="text" placeholder="Word or phrase" name="word" required>
               </ion-input>
@@ -74,7 +74,12 @@
         </ion-col>
         <ion-col col-2 class="advanced-search">
           <button type="button" (click)="advancedSearch=!advancedSearch;" ion-button color="dark" full>
-            <ion-icon class="cursor" (click)="advancedSearch=!advancedSearch;" name="settings"></ion-icon>
+            <ion-icon class="cursor" name="settings"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-2 class="advanced-search">
+          <button type="button" ion-button color="dark" [disabled]="!searchForm.form.dirty && !query.word" full (click)="searchForm.reset()">
+            <ion-icon name="backspace"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
