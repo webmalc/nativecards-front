@@ -9,6 +9,7 @@ import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
 import { WordDisplayPage } from '../word-display/word-display';
 import { WordFormPage } from '../word-form/word-form';
+import { LessonDashboardPage } from '../lesson-dashboard/lesson-dashboard';
 
 @IonicPage()
 @Component({
@@ -66,8 +67,8 @@ export class WordsPage extends BasePage {
 
   // Search for a card
   public search() {
-    this.total = null;
-    this.cards = null;
+    // this.total = null;
+    // this.cards = null;
     this.isSearching = true;
     this.query.next = null;
     this.cardsProvider.fetch(this.query).subscribe(words => {
@@ -92,6 +93,11 @@ export class WordsPage extends BasePage {
       this.showMessage()
       infiniteScroll.complete();
     });
+  }
+
+  // Start a lesson
+  public practice() {
+    this.navCtrl.push(LessonDashboardPage);
   }
 
   // Display the word

@@ -5,6 +5,7 @@ import { BasePage } from '../../lib/page';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Query } from '../../models/query';
 import { WordsPage } from '../words/words';
+import { LessonDashboardPage } from '../lesson-dashboard/lesson-dashboard';
 
 @IonicPage()
 @Component({
@@ -33,6 +34,11 @@ export class DashboardPage extends BasePage {
     }, error => {
       this.showMessage()
     })
+  }
+
+  // Start a lesson
+  public practice() {
+    this.navCtrl.push(LessonDashboardPage);
   }
 
   public search() {

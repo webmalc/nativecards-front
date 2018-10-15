@@ -200,3 +200,11 @@ ion-item.select {
     font-size: 1.2rem !important;
   }
 }
+ion-card {
+  opacity: 1;
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+}
+.old-content {
+  opacity: 0.5;
+}

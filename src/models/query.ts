@@ -11,6 +11,8 @@ export class Query {
 
   public word: string;
 
+  public isLatest: boolean = false;
+
   public deckId: number;
 
   public sortBy: string = 'word';
@@ -24,5 +26,4 @@ export class Query {
   public next: string;
 
   public previous: string;
-
 }

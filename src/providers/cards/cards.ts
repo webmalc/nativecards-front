@@ -35,6 +35,23 @@ export class CardsProvider extends Api {
     return this.requestGet(path);
   }
 
+  public lessons(query: Query) {
+    let path = 'en/cards/lesson/';
+    if (query.deckId) {
+      path = this.updateUrlParameter(path, 'deck', query.deckId);
+    }
+    if (query.category) {
+      path = this.updateUrlParameter(path, 'category', query.category);
+    }
+    if (query.isLatest) {
+      path = this.updateUrlParameter(path, 'is_latest', 1);
+    }
+
+    return this.requestGet(path).map(res => {
+      return plainToClass(Card, res);
+    });
+  }
+
   public get(id: number) {
     return this.requestGet(`en/cards/${id}/`).map(res => {
       return plainToClass(Card, res);

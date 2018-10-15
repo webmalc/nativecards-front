@@ -91,7 +91,7 @@
 
 <loading [data]="cards"></loading>
 
-<ion-card text-left margin-top *ngIf="total !== null">
+<ion-card text-left margin-top *ngIf="total !== null" [class.old-content]="isSearching">
   <ion-card-content>
       Total
       <ion-badge item-end color="primary" float-right>
@@ -100,7 +100,7 @@
   </ion-card-content>
 </ion-card>
 
-<ion-card *ngFor="let card of cards" text-left margin-top (click)="display(card)" class="cursor">
+<ion-card *ngFor="let card of cards" [class.old-content]="isSearching" text-left margin-top (click)="display(card)" class="cursor">
   <ion-card-header margin-bottom>
   <ion-row>
     <ion-col col-10>
@@ -130,6 +130,6 @@
 
 <ion-footer no-border text-center>
   <ion-toolbar>
-    <button ion-button>Practice</button>
+    <button ion-button (click)="practice()">Practice</button>
   </ion-toolbar>
 </ion-footer>
