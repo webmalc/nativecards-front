@@ -8,55 +8,80 @@
 <ion-content padding>
   <ion-grid fixed>
 
-<ion-card text-left>
-  <ion-card-content class="form">
-    <form #searchForm="ngForm" (ngSubmit)="loadLesson()">
+  <ion-card text-left>
+    <ion-card-content class="form">
+      <form #searchForm="ngForm" (ngSubmit)="loadLesson()">
+        <ion-row>
+          <ion-col>
+            <ion-list>
+
+              <loading [data]="decks"></loading>
+              <ion-item class="select" *ngIf="decks">
+                <ion-label>Deck</ion-label>
+                <ion-select interface="popover" [(ngModel)]="query.deckId" name="deckId">
+                  <ion-option value=""></ion-option>
+                  <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                    {{ deck.title }}
+                  </ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item class="select" *ngIf="decks">
+                <ion-label>Category</ion-label>
+                <ion-select interface="popover" [(ngModel)]="query.category" name="category">
+                  <ion-option value=""></ion-option>
+                  <ion-option *ngFor="let category of query.categories" value="{{ category.value }}">
+                    {{ category.title }}
+                  </ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Is latest?</ion-label>
+                <ion-checkbox [(ngModel)]="query.isLatest" color="strong-dark" name="isLatest"></ion-checkbox>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button color="light-dark" full [disabled]="isSearching || searchForm.form.invalid" type="submit">
+              <ion-icon  name="refresh" margin-right></ion-icon> load new cards
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <loading [data]="cards"></loading>
+
+  <ion-card *ngIf="distinctCards && cards">
+    <ion-card-header margin-bottom>
       <ion-row>
-        <ion-col>
-          <ion-list>
-
-            <loading [data]="decks"></loading>
-            <ion-item class="select" *ngIf="decks">
-              <ion-label>Deck</ion-label>
-              <ion-select interface="popover" [(ngModel)]="query.deckId" name="deckId">
-                <ion-option value=""></ion-option>
-                <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
-                  {{ deck.title }}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item class="select" *ngIf="decks">
-              <ion-label>Category</ion-label>
-              <ion-select interface="popover" [(ngModel)]="query.category" name="category">
-                <ion-option value=""></ion-option>
-                <ion-option *ngFor="let category of query.categories" value="{{ category.value }}">
-                  {{ category.title }}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Is latest?</ion-label>
-              <ion-checkbox [(ngModel)]="query.isLatest" color="strong-dark" name="isLatest"></ion-checkbox>
-            </ion-item>
-
-          </ion-list>
+        <ion-col col-10>
+          The words to practice
         </ion-col>
       </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <p *ngIf="!cards.length">Cards not found</p>
+      <ion-item class="cursor" *ngFor="let card of distinctCards" (click)="display(card)">
+        {{ card.word }}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-      <ion-row>
-        <ion-col>
-          <button ion-button color="light-dark" full [disabled]="isSearching || searchForm.form.invalid" type="submit">
-            <ion-icon  name="refresh" margin-right></ion-icon> load new cards
-          </button>
-        </ion-col>
-      </ion-row>
 
-    </form>
-  </ion-card-content>
-</ion-card>
-
-    <loading [data]="cards"></loading>
   </ion-grid>
 </ion-content>
+
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <button ion-button [disabled]="isSearching" (click)="start()">Start</button>
+  </ion-toolbar>
+</ion-footer>
