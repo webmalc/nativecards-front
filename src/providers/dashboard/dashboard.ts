@@ -24,12 +24,12 @@ export class DashboardProvider extends Api {
               'color': 'primary'
             },
             {
-              'title': 'correct attempts',
+              'title': 'correct answers',
               'value': data.todayCorrectAttempts,
               'color': 'secondary'
             },
             {
-              'title': 'incorrect attempts',
+              'title': 'incorrect answers',
               'value': data.todayIncorrectAttempts,
               'color': 'dark'
             },
@@ -44,12 +44,12 @@ export class DashboardProvider extends Api {
               'color': 'primary'
             },
             {
-              'title': 'correct attempts',
+              'title': 'correct answers',
               'value': data.weekCorrectAttempts,
               'color': 'secondary'
             },
             {
-              'title': 'incorrect attempts',
+              'title': 'incorrect answers',
               'value': data.weekIncorrectAttempts,
               'color': 'dark'
             },
@@ -64,12 +64,12 @@ export class DashboardProvider extends Api {
               'color': 'primary'
             },
             {
-              'title': 'correct attempts',
+              'title': 'correct answers',
               'value': data.monthCorrectAttempts,
               'color': 'secondary'
             },
             {
-              'title': 'incorrect attempts',
+              'title': 'incorrect answers',
               'value': data.monthIncorrectAttempts,
               'color': 'dark'
             },

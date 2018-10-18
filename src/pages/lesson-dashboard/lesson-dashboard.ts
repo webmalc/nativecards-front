@@ -8,6 +8,7 @@ import { Query } from '../../models/query';
 import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
 import { WordDisplayPage } from '../word-display/word-display';
+import { LessonPage } from '../lesson/lesson';
 
 
 @IonicPage()
@@ -70,6 +71,11 @@ export class LessonDashboardPage extends BasePage {
         return 0;
       }
     });
+  }
+
+  // Start a lesson
+  public start() {
+    this.navCtrl.setRoot(LessonPage, { 'cards': this.cards, 'page': 0 });
   }
 
   // Display the word

@@ -13,13 +13,4 @@ page-word-display {
   .card-word::first-letter {
     text-transform: uppercase;
   }
-  .card-text {
-    ion-card-content {
-      p {
-        display: list-item;
-        list-style-type: square;
-        list-style-position: inside;
-      }
-    }
-  }
 }

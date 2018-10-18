@@ -10,6 +10,7 @@ import { Card } from '../../models/card';
 import { Deck } from '../../models/deck';
 import { Settings } from '../../models/settings';
 import { WordFormPage } from '../word-form/word-form'
+import { LessonPage } from '../lesson/lesson';
 
 @IonicPage()
 @Component({
@@ -24,6 +25,8 @@ export class WordDisplayPage extends BasePage {
   public title: string;
   public id: number;
   public deckId: number;
+  public page: number;
+  public cards: Array<Card>;
 
   constructor(
     public navCtrl: NavController,
@@ -40,6 +43,9 @@ export class WordDisplayPage extends BasePage {
     this.id = card.id
     this.deckId = card.deck
     this.title = `Display card "${card.word}"`;
+
+    this.cards = this.params.get('cards');
+    this.page = this.params.get('page');
   }
 
   ionViewDidEnter() {
@@ -70,6 +76,11 @@ export class WordDisplayPage extends BasePage {
     this.navCtrl.push(WordFormPage, { 'card': this.card });
   }
 
+  // Go to the next card in the lesson
+  public nextLessonCard(): void {
+    this.navCtrl.setRoot(LessonPage, { 'cards': this.cards, 'page': this.page });
+  }
+
   public getColor(value: number, max: number = 100) {
     let percent = Math.round((value * 100) / max);
     if (percent < 25) {
@@ -88,7 +99,7 @@ export class WordDisplayPage extends BasePage {
   }
 
   // Play the audio file
-  public play(url: string) {
+  public play(url: string): void {
     Card.playAudio(url);
   }
 }

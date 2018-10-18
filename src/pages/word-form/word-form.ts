@@ -168,7 +168,6 @@ export class WordFormPage extends BasePage {
     }, error => {
       this.isSaving = false;
       this.errors = error;
-      console.log(this.errors);
       this.showMessage();
     })
   }

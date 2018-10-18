@@ -48,7 +48,13 @@ export class CardsProvider extends Api {
     }
 
     return this.requestGet(path).map(res => {
-      return plainToClass(Card, res);
+      let cards = plainToClass(Card, res);
+      cards.map(card => {
+        if (card.pronunciation) {
+          card.audio = Card.getAudio(card.pronunciation);
+        }
+      });
+      return cards;
     });
   }
 

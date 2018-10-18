@@ -116,9 +116,14 @@
 
 <ion-footer no-border text-center>
   <ion-toolbar>
-    <button ion-button color="dark" *ngIf="card" (click)="edit()">
+    <button ion-button color="dark" *ngIf="card && !page" (click)="edit()">
       <ion-icon name="create" margin-right></ion-icon>
       Edit the card
+    </button>
+
+    <button ion-button *ngIf="page" (click)="nextLessonCard()">
+      <ion-icon name="arrow-dropright-circle" margin-right></ion-icon>
+      Next card
     </button>
   </ion-toolbar>
 </ion-footer>

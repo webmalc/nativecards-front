@@ -13,6 +13,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { SettingsPage } from '../pages/settings/settings';
 import { DecksPage } from '../pages/decks/decks';
 import { WordsPage } from '../pages/words/words';
+import { LessonDashboardPage } from '../pages/lesson-dashboard/lesson-dashboard';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,6 +36,7 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
+      { title: 'Practice', 'icon': 'school', component: LessonDashboardPage },
       { title: 'Dashboard', 'icon': 'speedometer', component: DashboardPage },
       { title: 'Cards', 'icon': 'photos', component: WordsPage },
       { title: 'Decks', 'icon': 'folder', component: DecksPage },

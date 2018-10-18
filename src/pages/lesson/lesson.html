@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+    <navbar title="{{ title }}"></navbar>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-grid fixed *ngIf="statistics">
+      <ion-card text-left margin-top>
+        <ion-card-header margin-bottom>
+          Summary
+        </ion-card-header>
+        <ion-card-content>
+
+          <ion-item *ngFor="let row of statistics">
+            {{ row.title }}
+            <ion-badge item-end color="{{ row.color }}">
+              {{ row.value }}
+            </ion-badge>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+
+    <ion-grid fixed *ngIf="card">
+
+      <ion-card text-left margin-top *ngIf="audio" (click)="play(card.pronunciation)" class="cursor">
+        <ion-card-header margin-bottom>
+          <ion-icon class="cursor" name="volume-up" float-right></ion-icon>
+          Audio
+        </ion-card-header>
+        <ion-card-content>
+          Pronunciation of the word or phrase
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="card-text" text-left margin-top *ngIf="definition">
+        <ion-card-header margin-bottom>
+          Definition
+        </ion-card-header>
+        <ion-card-content [innerHTML]="card.definition|markdown">
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card text-left margin-top *ngIf="translation">
+        <ion-card-content>
+          {{ card.translation }}
+        </ion-card-content>
+      </ion-card>
+
+      <form (ngSubmit)="check()" #answerForm="ngForm">
+      <ion-card text-left margin-top *ngIf="card">
+            <ion-card-content class="form">
+                <ion-row>
+                    <ion-col>
+                        <ion-list inset>
+                            <ion-item *ngIf="!choices">
+                              <ion-input autofocus [(ngModel)]="answer" type="text" placeholder="Type the word or phrase" name="answer" required></ion-input>
+                            </ion-item>
+
+                            <ion-item *ngIf="choices" class="select">
+                              <ion-label>Choose the answer</ion-label>
+                              <ion-select interface="popover" [(ngModel)]="answer" name="answer" required>
+                                <ion-option *ngFor="let choice of card.choices">
+                                  {{ choice }}
+                                </ion-option>
+                              </ion-select>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+        </form>
+
+    </ion-grid>
+</ion-content>
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <button *ngIf="card" ion-button [disabled]="!skip" color="dark" (click)="skipCard()" margin-right>Skip</button>
+    <button *ngIf="card" ion-button [disabled]="!answer || attempt > 3" (click)="check()">
+      <ion-icon name="checkmark-circle" margin-right></ion-icon>Check
+    </button>
+    <button *ngIf="!card" ion-button (click)="practice()">
+      <ion-icon name="refresh" margin-right></ion-icon>Once again
+    </button>
+  </ion-toolbar>
+</ion-footer>

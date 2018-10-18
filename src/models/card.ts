@@ -56,6 +56,8 @@ export class Card extends Base {
 
   public pronunciation: string;
 
+  public audio: any;
+
   public complete: number;
 
   public priority: number = 2;
@@ -72,12 +74,29 @@ export class Card extends Base {
 
   public lastShowedAt: string;
 
+  public form: string;
+
+  public choices: Array<string>;
+
+  public attempts: number = 0;
+
+  public isCorrect: boolean = true;
+
+  public answer: string;
+
+  public isSync: boolean = false;
+
   // Play the audio file with pronunciation
   static playAudio(url: string) {
+    Card.getAudio(url).play();
+  }
+
+  // Get the audio file with pronunciation
+  static getAudio(url: string) {
     let audio = new Audio();
     audio.src = url;
     audio.load();
-    audio.play();
+    return audio;
   }
 
   static setDefaults(card: Card): Card {

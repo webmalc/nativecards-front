@@ -208,3 +208,13 @@ ion-card {
 .old-content {
   opacity: 0.5;
 }
+
+.card-text {
+  ion-card-content {
+    p {
+      display: list-item;
+      list-style-type: square;
+      list-style-position: inside;
+    }
+  }
+}

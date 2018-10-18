@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
 import { DashboardPageModule } from '../pages/dashboard/dashboard.module';
 import { LessonDashboardPageModule } from '../pages/lesson-dashboard/lesson-dashboard.module';
+import { LessonPageModule } from '../pages/lesson/lesson.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { DecksPageModule } from '../pages/decks/decks.module';
 import { DeckFormPageModule } from '../pages/deck-form/deck-form.module';
@@ -42,6 +43,7 @@ import { DashboardProvider } from '../providers/dashboard/dashboard';
     WordDisplayPageModule,
     WordFormPageModule,
     LessonDashboardPageModule,
+    LessonPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
