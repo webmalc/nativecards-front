@@ -46,7 +46,14 @@
 
       <ion-card text-left margin-top *ngIf="translation">
         <ion-card-content>
-          {{ card.translation }}
+          <ion-row>
+            <ion-col col-12 col-md-3 col-lg-3 col-xl-2 col-sm-12 *ngIf="card.image">
+              <img class="card-image" src="{{card.image}}">
+            </ion-col>
+            <ion-col>
+              {{ card.translation }}
+            </ion-col>
+          </ion-row>
         </ion-card-content>
       </ion-card>
 
@@ -55,19 +62,19 @@
             <ion-card-content class="form">
                 <ion-row>
                     <ion-col>
-                        <ion-list inset>
-                            <ion-item *ngIf="!choices">
-                              <ion-input autofocus [(ngModel)]="answer" type="text" placeholder="Type the word or phrase" name="answer" required></ion-input>
-                            </ion-item>
+                    <ion-list inset>
+                        <ion-item *ngIf="!choices">
+                          <ion-input autofocus [(ngModel)]="answer" type="text" placeholder="Type the word or phrase" name="answer" required></ion-input>
+                        </ion-item>
 
-                            <ion-item *ngIf="choices" class="select">
-                              <ion-label>Choose the answer</ion-label>
-                              <ion-select interface="popover" [(ngModel)]="answer" name="answer" required>
-                                <ion-option *ngFor="let choice of card.choices">
-                                  {{ choice }}
-                                </ion-option>
-                              </ion-select>
-                            </ion-item>
+                        <ion-item *ngIf="choices" class="select">
+                          <ion-label>Choose the answer</ion-label>
+                          <ion-select interface="popover" [(ngModel)]="answer" name="answer" required>
+                            <ion-option *ngFor="let choice of card.choices">
+                              {{ choice }}
+                            </ion-option>
+                          </ion-select>
+                        </ion-item>
                         </ion-list>
                     </ion-col>
                 </ion-row>
