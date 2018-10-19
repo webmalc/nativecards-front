@@ -75,6 +75,7 @@ export class WordFormPage extends BasePage {
       this.images = images;
       if (this.card && !this.card.image && this.images.length) {
         this.selectedImage = images[0].previewUrl;
+        this.card.remoteImage = images[0].previewUrl;
         images[0].isSelected = true;
       }
     }, error => {

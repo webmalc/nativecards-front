@@ -35,6 +35,16 @@ export class CardsProvider extends Api {
     return this.requestGet(path);
   }
 
+  public attemptSave(card: Card) {
+    return this.requestPost(`en/attempts/`, {
+      'card': card.id,
+      'form': card.form,
+      'is_correct': card.isCorrect,
+      'is_hint': card.attempts > 0 ? true : false,
+      'answer': card.answer,
+    });
+  }
+
   public lessons(query: Query) {
     let path = 'en/cards/lesson/';
     if (query.deckId) {

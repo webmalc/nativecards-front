@@ -6,7 +6,6 @@
 
 
 <ion-content>
-
     <ion-grid fixed *ngIf="statistics">
       <ion-card text-left margin-top>
         <ion-card-header margin-bottom>
@@ -22,6 +21,8 @@
           </ion-item>
         </ion-card-content>
       </ion-card>
+
+      <loading [data]="isSync"></loading>
     </ion-grid>
 
     <ion-grid fixed *ngIf="card">
@@ -91,7 +92,7 @@
     <button *ngIf="card" ion-button [disabled]="!answer || attempt > 3" (click)="check()">
       <ion-icon name="checkmark-circle" margin-right></ion-icon>Check
     </button>
-    <button *ngIf="!card" ion-button (click)="practice()">
+    <button *ngIf="!card" [disabled]="!isSync" ion-button (click)="practice()">
       <ion-icon name="refresh" margin-right></ion-icon>Once again
     </button>
   </ion-toolbar>

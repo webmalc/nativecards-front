@@ -27,6 +27,7 @@ export class LessonPage extends BasePage {
   public translation: boolean = false;
   public audio: boolean = false;
   public choices: boolean = false;
+  public isSync: boolean = false;
   public statistics: Array<{ title: string, value: number, color: string }>;
 
   constructor(
@@ -61,8 +62,25 @@ export class LessonPage extends BasePage {
   private _getCard(): void {
     this.card = this.cards[this.page];
     if (!this.card) {
+      this._sync();
       this._getStatistics();
     }
+  }
+
+  // Sync the answers with the server
+  private _sync(): void {
+    this.isSync = this.isAllSynced();
+    this.cards.filter(card => card.answer && !card.isSync).map(card => {
+      this.cardsProvider.attemptSave(card).subscribe(result => {
+        card.isSync = true;
+        this.isSync = this.isAllSynced();
+      }, error => { return });
+    });
+  }
+
+  // Check if all of the cards are synchronized
+  public isAllSynced(): boolean {
+    return this.cards.filter(card => !card.isSync).length == 0;
   }
 
   // Get current statistics from the cards
@@ -151,6 +169,7 @@ export class LessonPage extends BasePage {
     this.cards[this.page].isCorrect = isCorrect;
     this.cards[this.page].attempts = this.attempt;
     this.cards[this.page].answer = this.answer;
+    this._sync();
   }
 
   // Get correct chars from the answer
