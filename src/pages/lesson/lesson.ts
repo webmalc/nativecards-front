@@ -45,6 +45,7 @@ export class LessonPage extends BasePage {
     this._getCard();
     this._showDefinition();
     this._showAudio();
+    this._showTranslation();
   }
 
   // Set page title
@@ -133,6 +134,10 @@ export class LessonPage extends BasePage {
       return;
     }
     if (this.attempt > 1) {
+      this.translation = true;
+    }
+    if (!this.card.pronunciation && !this.card.definition) {
+      this.attempt += 1;
       this.translation = true;
     }
   }
