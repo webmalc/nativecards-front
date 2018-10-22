@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
 import { DashboardProvider } from '../../providers/dashboard/dashboard';
 import { BasePage } from '../../lib/page';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -15,7 +15,9 @@ import { LessonDashboardPage } from '../lesson-dashboard/lesson-dashboard';
 export class DashboardPage extends BasePage {
 
   public widgets: any;
+  public goal: number = null;
   public query: Query;
+  public autofocus: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -23,14 +25,22 @@ export class DashboardPage extends BasePage {
     public auth: AuthProvider,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
+    public platform: Platform,
   ) {
     super(navCtrl, toastCtrl, loadingCtrl, auth);
+    if (this.platform.is('core')) {
+      this.autofocus = true;
+    }
     this.query = new Query();
   }
 
   public ionViewDidLoad() {
     this.dashboard.fetch().subscribe(widgets => {
       this.widgets = widgets;
+      let d = this.widgets.shift();
+      this.goal = Math.round(
+        (d.todayAttemptsToComplete - d.todayAttemptsRemain) * 100 / d.todayAttemptsToComplete
+      );
     }, error => {
       this.showMessage()
     })

@@ -13,7 +13,7 @@
                         <ion-col>
                             <ion-list inset>
                                 <ion-item>
-                                  <ion-input autofocus  [(ngModel)]="query.word" type="text" placeholder="Find the word or phrase" name="word" required></ion-input>
+                                  <ion-input [attr.autofocus]="autofocus ? true: null"  [(ngModel)]="query.word" type="text" placeholder="Find the word or phrase" name="word" required></ion-input>
                                 </ion-item>
                             </ion-list>
                         </ion-col>
@@ -30,6 +30,14 @@
         </ion-card>
 
         <loading [data]="widgets"></loading>
+
+        <ion-card class="progress-wrapper" *ngIf="goal !== null">
+            <div class="progress-header">Today's goal</div>
+            <ion-card-content text-center>
+              <ion-badge color="primary">{{ goal }}%</ion-badge>
+            </ion-card-content>
+            <div [style.width]="goal + '%'" class="progress"></div>
+        </ion-card>
 
         <ion-card text-left *ngFor="let widget of widgets" margin-top>
             <ion-card-header margin-bottom>

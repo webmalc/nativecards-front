@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Platform, Content, IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { CardsProvider } from '../../providers/cards/cards'
 import { BasePage } from '../../lib/page';
 import { Card } from '../../models/card';
 import { LessonDashboardPage } from '../lesson-dashboard/lesson-dashboard';
 import { WordDisplayPage } from '../word-display/word-display';
+
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class LessonPage extends BasePage {
   public card: Card;
   public title: string;
   public page: number = 0;
+  public autofocus: boolean = false;
   public attempt: number = 0;
   public skip: boolean = false;
   public answer: string;
@@ -37,8 +39,12 @@ export class LessonPage extends BasePage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public cardsProvider: CardsProvider,
+    public platform: Platform,
   ) {
     super(navCtrl, toastCtrl, loadingCtrl, auth);
+    if (this.platform.is('core')) {
+      this.autofocus = true;
+    }
     this.cards = this.params.get('cards');
     this.page = this.params.get('page');
     this._setTitle();

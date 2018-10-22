@@ -15,12 +15,23 @@ export class DashboardProvider extends Api {
     return Observable.create(observer => {
       this.requestGet('en/attempts/statistics/').subscribe(data => {
         let widgets = [];
+        widgets.push(data);
         widgets.push({
           'title': 'Today',
           'elements': [
             {
               'title': 'attempts',
               'value': data.todayAttempts,
+              'color': 'primary'
+            },
+            {
+              'title': 'attempts for goal',
+              'value': data.todayAttemptsToComplete,
+              'color': 'primary'
+            },
+            {
+              'title': 'remaining attempts',
+              'value': data.todayAttemptsRemain,
               'color': 'primary'
             },
             {

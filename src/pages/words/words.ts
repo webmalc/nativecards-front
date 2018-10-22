@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DecksProvider } from '../../providers/decks/decks'
 import { CardsProvider } from '../../providers/cards/cards'
@@ -21,15 +21,11 @@ export class WordsPage extends BasePage {
   @ViewChild('searchForm') form;
 
   public query: Query;
-
+  public autofocus: boolean = false;
   public total: number;
-
   public decks: Array<Deck>;
-
   public cards: Array<Card>;
-
   public isSearching: boolean = false;
-
   public advancedSearch: boolean = false;
 
 
@@ -41,8 +37,12 @@ export class WordsPage extends BasePage {
     public loadingCtrl: LoadingController,
     public decksProvider: DecksProvider,
     public cardsProvider: CardsProvider,
+    public platform: Platform,
   ) {
     super(navCtrl, toastCtrl, loadingCtrl, auth);
+    if (this.platform.is('core')) {
+      this.autofocus = true;
+    }
     this.query = new Query();
     let query = this.params.get('query');
     if (query) {
