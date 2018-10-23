@@ -107,7 +107,9 @@ export class WordsPage extends BasePage {
 
   // Add the word
   public add() {
-    this.navCtrl.push(WordFormPage, { 'word': this.query.word });
+    this.navCtrl.push(WordFormPage, {
+      'word': this.query.word.toLocaleLowerCase().trim()
+    });
   }
 
   // Play the audio file

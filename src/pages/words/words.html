@@ -14,7 +14,7 @@
         <ion-col>
           <ion-list>
             <ion-item>
-              <ion-input [attr.autofocus]="autofocus ? true: null" [(ngModel)]="query.word" type="text" placeholder="Type the word or phrase" name="word" required>
+              <ion-input autocapitalize="off" [attr.autofocus]="autofocus ? true: null" [(ngModel)]="query.word" type="text" placeholder="Type the word or phrase" name="word" required>
               </ion-input>
             </ion-item>
 

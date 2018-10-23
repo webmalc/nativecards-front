@@ -13,7 +13,7 @@
                         <ion-col>
                             <ion-list inset>
                                 <ion-item>
-                                  <ion-input [attr.autofocus]="autofocus ? true: null"  [(ngModel)]="query.word" type="text" placeholder="Find the word or phrase" name="word" required></ion-input>
+                                  <ion-input autocapitalize="off" [attr.autofocus]="autofocus ? true: null"  [(ngModel)]="query.word" type="text" placeholder="Find the word or phrase" name="word" required></ion-input>
                                 </ion-item>
                             </ion-list>
                         </ion-col>
