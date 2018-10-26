@@ -11,4 +11,6 @@ export class Settings extends Base {
   public lessonLatestDays: number;
 
   public playAudioOnOpen: boolean;
+
+  public lessonsPerDay: number;
 }

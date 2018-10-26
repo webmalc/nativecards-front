@@ -31,8 +31,13 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label [class.danger]="errors.lessonLatestDays" stacked>Num of days to get last words</ion-label>
+                  <ion-label [class.danger]="errors.lessonLatestDays" stacked>Number of days to get last words</ion-label>
                   <ion-input type="number" [(ngModel)]="settings.lessonLatestDays" name="lessonLatestDays" min="5" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label [class.danger]="errors.lessonsPerDay" stacked>Number of lessons per day</ion-label>
+                  <ion-input type="number" [(ngModel)]="settings.lessonsPerDay" name="lessonsPerDay" min="1" required></ion-input>
                 </ion-item>
 
                 <ion-item>
