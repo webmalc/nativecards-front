@@ -43,6 +43,16 @@
             </ion-item>
 
             <ion-item class="select" *ngIf="decks">
+              <ion-label>Complete</ion-label>
+              <ion-select interface="popover" [(ngModel)]="query.complete" name="complete">
+                <ion-option value=""></ion-option>
+                <ion-option *ngFor="let complete of query.completeOptions" value="{{ complete.value }}">
+                  {{ complete.title }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="select" *ngIf="decks">
               <ion-label>Priority</ion-label>
               <ion-select interface="popover" [(ngModel)]="query.priority" name="priority">
                 <ion-option value=""></ion-option>
@@ -103,11 +113,15 @@
 <ion-card *ngFor="let card of cards" [class.old-content]="isSearching" text-left margin-top (click)="display(card)" class="cursor">
   <ion-card-header margin-bottom>
   <ion-row>
-    <ion-col col-10>
+    <ion-col col-9>
       {{ card.word }}
     </ion-col>
-    <ion-col text-right *ngIf="card.pronunciation">
-      <ion-icon click-stop-propagation (click)="play(card.pronunciation)" class="cursor" name="volume-up" float-right></ion-icon>
+    <ion-col text-right>
+      <ion-icon *ngIf="card.pronunciation" click-stop-propagation (click)="play(card.pronunciation)" class="cursor" name="volume-up"></ion-icon>
+
+      <ion-icon *ngIf="card.complete == 0" name="star-outline" margin-left title="complete: {{ card.complete}}"></ion-icon>
+      <ion-icon *ngIf="card.complete == 100" name="star" margin-left title="complete: {{ card.complete}}"></ion-icon>
+      <ion-icon *ngIf="card.complete > 0 && card.complete < 100" name="star-half" margin-left title="complete: {{ card.complete}}"></ion-icon>
     </ion-col>
   </ion-row>
 </ion-card-header>

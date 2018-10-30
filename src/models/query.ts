@@ -9,6 +9,12 @@ export class Query {
 
   public categories: Array<SelectValue> = Card.categories;
 
+  public completeOptions: Array<SelectValue> = [
+    new SelectValue('not practiced', 'not_practiced'),
+    new SelectValue('in process', 'in_process'),
+    new SelectValue('completed', 'completed'),
+  ]
+
   public word: string;
 
   public isLatest: boolean = false;
@@ -26,4 +32,6 @@ export class Query {
   public next: string;
 
   public previous: string;
+
+  public complete: string;
 }

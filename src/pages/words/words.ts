@@ -67,8 +67,8 @@ export class WordsPage extends BasePage {
 
   // Search for a card
   public search() {
-    // this.total = null;
-    // this.cards = null;
+    this.total = null;
+    this.cards = null;
     this.isSearching = true;
     this.query.next = null;
     this.cardsProvider.fetch(this.query).subscribe(words => {

@@ -30,6 +30,16 @@ export class CardsProvider extends Api {
     if (query.word) {
       path = this.updateUrlParameter(path, 'search', query.word);
     }
+    if (query.complete == 'completed') {
+      path = this.updateUrlParameter(path, 'complete__gte', 100);
+    }
+    if (query.complete == 'in_process') {
+      path = this.updateUrlParameter(path, 'complete__lte', 99);
+      path = this.updateUrlParameter(path, 'complete__gte', 1);
+    }
+    if (query.complete == 'not_practiced') {
+      path = this.updateUrlParameter(path, 'complete__lte', 0);
+    }
     path = this.updateUrlParameter(path, 'ordering', query.sortBy);
 
     return this.requestGet(path);
