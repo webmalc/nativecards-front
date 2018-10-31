@@ -1,0 +1,8 @@
+---
+
+- name: Android build
+  hosts: all
+  remote_user: ubuntu
+
+  roles:
+    - role: android

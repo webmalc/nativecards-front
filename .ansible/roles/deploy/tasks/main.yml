@@ -1,0 +1,33 @@
+- name: Nativecards deploy - build
+  shell: "cross-env ENV=prod ionic cordova build browser --prod --release"
+  connection: local
+  args:
+    chdir: ../
+  tags: deploy
+
+- name: Nativecards deploy - sync
+  synchronize:
+    src: "{{nativecards.local_path}}"
+    dest: "{{nativecards.path}}"
+  tags: deploy
+
+- name: Nativecards deploy - restart nginx
+  service: name=nginx state=restarted
+  become: true
+  tags: deploy
+
+- name: Nativecards deploy - clear CLoudflare cache
+  uri:
+    url: "{{nativecards.cloudflare_cache}}"
+    method: POST
+    return_content: yes
+    body_format: json
+    body:
+      purge_everything: true
+    headers:
+      X-Auth-Email: "{{nativecards_local.cloudflare_email}}"
+      X-Auth-Key: "{{nativecards_local.cloudflare_api_key}}"
+  register: this
+  failed_when: "'\"success\":true' not in this.content"
+
+  tags: deploy

@@ -1,0 +1,6 @@
+- name: Nativecards android - build
+  shell: "utils/android.sh"
+  connection: local
+  args:
+    chdir: ../
+  tags: android

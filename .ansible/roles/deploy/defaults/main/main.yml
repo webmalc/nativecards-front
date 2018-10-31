@@ -1,0 +1,6 @@
+---
+nativecards:
+  path: /home/ubuntu/projects/nativecards-frontend/
+  local_path: ../www/
+  repo: git@github.com:webmalc/nativecards-server.git
+  cloudflare_cache: https://api.cloudflare.com/client/v4/zones/65f793b5089c81d38360d418361f2039/purge_cache

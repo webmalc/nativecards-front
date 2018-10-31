@@ -1,0 +1,4 @@
+---
+nativecards_local:
+  cloudflare_api_key: api_key
+  cloudflare_email: email@example.com
