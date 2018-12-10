@@ -65,7 +65,7 @@
                     <ion-col>
                     <ion-list inset>
                         <ion-item *ngIf="!choices">
-                          <ion-input autocapitalize="off" [attr.autofocus]="autofocus ? true: null" [(ngModel)]="answer" type="text" placeholder="Type the word or phrase" name="answer" required></ion-input>
+                          <ion-input autocapitalize="off" [attr.autofocus]="autofocus ? true: null" [(ngModel)]="answer" type="text" placeholder="Type the word or phrase" name="answer" #answerInput required></ion-input>
                         </ion-item>
 
                         <ion-item *ngIf="choices" class="select">

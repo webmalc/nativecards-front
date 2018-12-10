@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Content, IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Platform, TextInput, Content, IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { CardsProvider } from '../../providers/cards/cards'
 import { BasePage } from '../../lib/page';
@@ -16,6 +16,7 @@ import { WordDisplayPage } from '../word-display/word-display';
 export class LessonPage extends BasePage {
 
   @ViewChild(Content) content: Content;
+  @ViewChild('answerInput') answerInput: TextInput;
   public cards: Array<Card>;
   public card: Card;
   public title: string;
@@ -205,7 +206,11 @@ export class LessonPage extends BasePage {
     } else {
       this.showMessage(
         'Sorry, wrong answer, try again! Correct: ' + this._getChars()
-      );
+      ).then(rs => {
+        if (this.answerInput) {
+          this.answerInput.setFocus();
+        }
+      });
       this.skip = true;
       this.isHint = true;
       this.attempt += 1;

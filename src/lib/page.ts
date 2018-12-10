@@ -43,9 +43,11 @@ export class BasePage {
     this.dismissLoading();
     const toast = this.toastCtrl.create({
       message: text,
+      showCloseButton: true,
+      closeButtonText: '✖',
       duration: 3000
     });
-    toast.present();
+    return toast.present();
   }
 
   public reload() {
