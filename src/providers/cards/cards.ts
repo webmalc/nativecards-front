@@ -13,11 +13,7 @@ export class CardsProvider extends Api {
     super(http, storage);
   }
 
-  public fetch(query: Query) {
-    let path = 'en/cards/';
-    if (query.next) {
-      path = this.getUrlPath(query.next);
-    }
+  private addFiltersToPath(path: string, query: Query): string {
     if (query.deckId) {
       path = this.updateUrlParameter(path, 'deck', query.deckId);
     }
@@ -30,18 +26,37 @@ export class CardsProvider extends Api {
     if (query.word) {
       path = this.updateUrlParameter(path, 'search', query.word);
     }
-    if (query.complete == 'completed') {
+    if (query.complete == 'learned') {
       path = this.updateUrlParameter(path, 'complete__gte', 100);
     }
     if (query.complete == 'in_process') {
       path = this.updateUrlParameter(path, 'complete__lte', 99);
       path = this.updateUrlParameter(path, 'complete__gte', 1);
     }
+    if (query.complete == 'almost_learned') {
+      path = this.updateUrlParameter(path, 'complete__lte', 99);
+      path = this.updateUrlParameter(path, 'complete__gte', 70);
+    }
+    if (query.complete == 'just_started') {
+      path = this.updateUrlParameter(path, 'complete__lte', 30);
+      path = this.updateUrlParameter(path, 'complete__gte', 1);
+    }
     if (query.complete == 'not_practiced') {
       path = this.updateUrlParameter(path, 'complete__lte', 0);
     }
-    path = this.updateUrlParameter(path, 'ordering', query.sortBy);
+    if (query.sortBy) {
+      path = this.updateUrlParameter(path, 'ordering', query.sortBy);
+    }
 
+    return path;
+  }
+
+  public fetch(query: Query) {
+    let path = this.addFiltersToPath('en/cards/', query);
+
+    if (query.next) {
+      path = this.getUrlPath(query.next);
+    }
     return this.requestGet(path);
   }
 
@@ -56,16 +71,7 @@ export class CardsProvider extends Api {
   }
 
   public lessons(query: Query) {
-    let path = 'en/cards/lesson/';
-    if (query.deckId) {
-      path = this.updateUrlParameter(path, 'deck', query.deckId);
-    }
-    if (query.category) {
-      path = this.updateUrlParameter(path, 'category', query.category);
-    }
-    if (query.isLatest) {
-      path = this.updateUrlParameter(path, 'is_latest', 1);
-    }
+    let path = this.addFiltersToPath('en/cards/lesson/', query);
 
     return this.requestGet(path).map(res => {
       let cards = plainToClass(Card, res);

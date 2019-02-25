@@ -12,7 +12,9 @@ export class Query {
   public completeOptions: Array<SelectValue> = [
     new SelectValue('not practiced', 'not_practiced'),
     new SelectValue('in process', 'in_process'),
-    new SelectValue('completed', 'completed'),
+    new SelectValue('almost learned', 'almost_learned'),
+    new SelectValue('just started', 'just_started'),
+    new SelectValue('learned', 'learned'),
   ]
 
   public word: string;

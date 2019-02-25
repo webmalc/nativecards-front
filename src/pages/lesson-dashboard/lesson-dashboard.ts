@@ -43,6 +43,7 @@ export class LessonDashboardPage extends BasePage {
     if (query) {
       this.query = query;
     }
+    this.query.sortBy = null;
   }
 
   public ionViewWillLoad() {

@@ -18,12 +18,12 @@
               <loading [data]="decks"></loading>
               <ion-item class="select" *ngIf="decks">
                 <ion-label>Deck</ion-label>
-                <ion-select interface="popover" [(ngModel)]="query.deckId" name="deckId">
-                  <ion-option value=""></ion-option>
-                  <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
-                    {{ deck.title }}
-                  </ion-option>
-                </ion-select>
+                  <ion-select interface="popover" [(ngModel)]="query.deckId" name="deckId">
+                    <ion-option value=""></ion-option>
+                    <ion-option *ngFor="let deck of decks" value="{{ deck.id }}">
+                      {{ deck.title }}
+                    </ion-option>
+                  </ion-select>
               </ion-item>
 
               <ion-item class="select" *ngIf="decks">
@@ -32,6 +32,35 @@
                   <ion-option value=""></ion-option>
                   <ion-option *ngFor="let category of query.categories" value="{{ category.value }}">
                     {{ category.title }}
+                  </ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item class="select" *ngIf="decks">
+                <ion-label>Complete</ion-label>
+                <ion-select interface="popover" [(ngModel)]="query.complete" name="complete">
+                  <ion-option value=""></ion-option>
+                  <ion-option *ngFor="let complete of query.completeOptions" value="{{ complete.value }}">
+                    {{ complete.title }}
+                  </ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item class="select" *ngIf="decks">
+                <ion-label>Priority</ion-label>
+                <ion-select interface="popover" [(ngModel)]="query.priority" name="priority">
+                  <ion-option value=""></ion-option>
+                  <ion-option *ngFor="let priority of query.priorities" value="{{ priority.value }}">
+                    {{ priority.title }}
+                  </ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item class="select" *ngIf="decks">
+                <ion-label>Sort by</ion-label>
+                <ion-select interface="popover" [(ngModel)]="query.sortBy" name="sortBy">
+                  <ion-option *ngFor="let sort of query.sortings" value="{{ sort.value }}">
+                    {{ sort.title }}
                   </ion-option>
                 </ion-select>
               </ion-item>

@@ -9,8 +9,8 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
-    "ionic:serve:before": "node ./src/bin/env.js",
-    "ionic:build:before": "node ./src/bin/env.js"
+    "ionic:serve:before": "nodejs ./src/bin/env.js",
+    "ionic:build:before": "nodejs ./src/bin/env.js"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",

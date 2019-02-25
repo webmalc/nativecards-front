@@ -4,5 +4,7 @@
     "cordova": {}
   },
   "type": "ionic-angular",
-  "pro_id": "111f86fc"
+  "pro_id": "111f86fc",
+  "app_id": "",
+  "watchPatterns": ["www/**/*", "!www/lib/**/*", "flycheck_*"]
 }
