@@ -33,17 +33,16 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$colors: (
-  primary-blue:    #2e5aa5,
-  primary:    #f1f1f1,
-  secondary:  #2d5907,
-  danger:     #a02c2c,
-  light:      #f4f4f4,
-  white:      #d3d3d3,
-  gray:      #555555,
-  dark:       #222,
-  strong-dark: #111,
-  light-dark: #333,
+$colors: (primary-blue: #2e5aa5,
+primary: #f1f1f1,
+secondary: #2d5907,
+danger: #a02c2c,
+light: #f4f4f4,
+white: #d3d3d3,
+gray: #555555,
+dark: #222,
+strong-dark: #111,
+light-dark: #333,
 );
 
 
@@ -99,146 +98,179 @@ $spinner-md-dots-color: $text-color;
 $alert-md-button-text-color: color($colors, strong-dark);
 $alert-ios-button-text-color: color($colors, strong-dark);
 
-$screen-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
-) !default;
+$screen-breakpoints: (xs: 0,
+sm: 576px,
+md: 768px,
+lg: 992px,
+xl: 1200px) !default;
 
-@each $size, $size-value in $screen-breakpoints {
-  .hide-#{$size} {
-    @media  screen and (max-width: $size-value) {
-      display: none;
+@each $size,
+$size-value in $screen-breakpoints {
+    .hide-#{$size} {
+        @media screen and (max-width: $size-value) {
+            display: none;
+        }
     }
-  }
 }
 
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
+
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
-.progress-wrapper {
-  position: relative;
 
-  .progress-header {
-    position: absolute;
-    top: 12px;
-    left: 15px;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-  ion-card-content {
-    padding: 0px;
-    position: absolute;
-    top: 9px;
-    width: 100%;
-  }
-  .progress {
-    background-color: color($colors, light-dark);
-    overflow: visible;
-    padding: 7px;
-    border-radius: 2px;
-    height: 40px;
-  }
+.progress-wrapper {
+    position: relative;
+
+    .progress-header {
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    ion-card-content {
+        padding: 0px;
+        position: absolute;
+        top: 9px;
+        width: 100%;
+    }
+
+    .progress {
+        background-color: color($colors, light-dark);
+        overflow: visible;
+        padding: 7px;
+        border-radius: 2px;
+        height: 40px;
+    }
 }
+
 ion-card-header {
-  color: color($colors, white) !important;
-  border-bottom: 1px dashed color($colors, light-dark);
-}
-ion-card-content p {
-  color: color($colors, white) !important;
-}
-form {
-  ion-input, ion-label, ion-textarea {
-    padding: 0px 8px;
-  }
-  ion-label {
-    text-transform: uppercase;
-  }
-  ion-textarea, textarea {
-    resize:none;
-  }
-}
-ion-card {
-  form, .form {
-    ion-list {
-      margin: 0px !important;
-    }
-    ion-item {
-      background-color: color($colors, strong-dark) !important;
-    }
-  }
-  ion-item {
-    background-color: color($colors, light-dark) !important;
     color: color($colors, white) !important;
-  }
+    border-bottom: 1px dashed color($colors, light-dark);
 }
+
+ion-card-content p {
+    color: color($colors, white) !important;
+}
+
+form {
+
+    ion-input,
+    ion-label,
+    ion-textarea {
+        padding: 0px 8px;
+    }
+
+    ion-label {
+        text-transform: uppercase;
+    }
+
+    ion-textarea,
+    textarea {
+        resize: none;
+    }
+}
+
+ion-card {
+
+    form,
+    .form {
+        ion-list {
+            margin: 0px !important;
+        }
+
+        ion-item {
+            background-color: color($colors, strong-dark) !important;
+        }
+    }
+
+    ion-item {
+        background-color: color($colors, light-dark) !important;
+        color: color($colors, white) !important;
+    }
+}
+
 .cursor {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 .danger {
-  color: color($colors, danger) !important;
+    color: color($colors, danger) !important;
 }
+
 .newline {
-  white-space: pre-line;
+    white-space: pre-line;
 }
+
 .logo {
-  cursor: pointer;
-  letter-spacing: 0.1em;
-  span {
-    background-color: #333;
-    padding: 0.0em 0.1em 0.0em 0.2em;
-    display: inline-block;
-    margin-left: 4px;
-  }
+    cursor: pointer;
+    letter-spacing: 0.1em;
+
+    span {
+        background-color: #333;
+        padding: 0.0em 0.1em 0.0em 0.2em;
+        display: inline-block;
+        margin-left: 4px;
+    }
 }
+
 ion-card-content {
-  p {
-    padding: 4px 0px;
-  }
+    p {
+        padding: 4px 0px;
+    }
 }
+
 ion-card-header.disabled {
-  text-decoration: line-through;
-  color: color($colors, danger) !important;
+    text-decoration: line-through;
+    color: color($colors, danger) !important;
 }
+
 ion-content.sidebar {
-  .item-inner {
-    border-bottom: 0px !important;
-  }
+    .item-inner {
+        border-bottom: 0px !important;
+    }
 }
+
 .item-checkbox {
-  text-transform: none !important;
-  font-size: 1.2rem !important;
+    text-transform: none !important;
+    font-size: 1.2rem !important;
 }
 
 .item-md.item-checkbox {
-  color: #999 !important;
+    color: #999 !important;
 }
 
 ion-item.select {
-  ion-label {
-    font-size: 1.2rem !important;
-  }
+    ion-label {
+        font-size: 1.2rem !important;
+    }
 }
+
 ion-card {
-  opacity: 1;
-  -webkit-transition-delay: 1s;
-  transition-delay: 1s;
+    opacity: 1;
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s;
 }
+
 .old-content {
-  opacity: 0.5 !important;
+    opacity: 0.5 !important;
 }
 
 .card-text {
-  ion-card-content {
-    p {
-      display: list-item;
-      list-style-type: square;
-      list-style-position: inside;
+    ion-card-content {
+        p {
+            display: list-item;
+            list-style-type: square;
+            list-style-position: inside;
+        }
     }
-  }
+}
+
+.scroll-content {
+    overflow-y: auto !important;
 }
