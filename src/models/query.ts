@@ -12,8 +12,8 @@ export class Query {
   public completeOptions: Array<SelectValue> = [
     new SelectValue('not practiced', 'not_practiced'),
     new SelectValue('in process', 'in_process'),
-    new SelectValue('almost learned', 'almost_learned'),
     new SelectValue('just started', 'just_started'),
+    new SelectValue('almost learned', 'almost_learned'),
     new SelectValue('learned', 'learned'),
   ]
 
@@ -36,4 +36,18 @@ export class Query {
   public previous: string;
 
   public complete: string;
+
+  /**
+   * Return the type of search
+   */
+  public isStartsWithSearch(): boolean {
+    return this.word.slice(-1) === '*';
+  }
+
+  /**
+   * Return the word without special chars like '*'
+   */
+  public getCleanedWord(): string {
+    return this.word.slice(-1) === '*' ? this.word.slice(0, -1) : this.word
+  }
 }

@@ -24,7 +24,8 @@ export class CardsProvider extends Api {
       path = this.updateUrlParameter(path, 'priority', query.priority);
     }
     if (query.word) {
-      path = this.updateUrlParameter(path, 'search', query.word);
+      let searchType = query.isStartsWithSearch() ? 'word_starts' : 'search';
+      path = this.updateUrlParameter(path, searchType, query.getCleanedWord());
     }
     if (query.complete == 'learned') {
       path = this.updateUrlParameter(path, 'complete__gte', 100);
