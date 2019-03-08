@@ -11,7 +11,7 @@ export APP_NAME=nativecards-old
 if [ $1 == 'release' ]; then
   echo 'Build release APK'
   ionic cordova build android --prod --release --verbose
-  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk $APP_NAME
+  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $APP_NAME.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk $APP_NAME
   rm -f platforms/android/app/build/outputs/apk/release/$APP_NAME.apk
   zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/release/$APP_NAME.apk
 elif [ $1 == 'key' ]; then
