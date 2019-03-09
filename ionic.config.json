@@ -1,15 +1,15 @@
 {
-    "name": "nativecards-frontend-old",
-    "integrations": {
-        "cordova": {}
-    },
-    "type": "ionic-angular",
-    "pro_id": "111f86fc",
-    "watchPatterns": [
-        "www/**/*",
-        "!www/lib/**/*",
-        "flycheck_*"
-    ],
-    "id": "111f86fc",
-    "app_id": ""
+  "name": "nativecards-frontend-old",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "111f86fc",
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*",
+    "flycheck_*"
+  ],
+  "id": "111f86fc",
+  "app_id": ""
 }
