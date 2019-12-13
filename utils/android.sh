@@ -4,7 +4,7 @@ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=${PATH}:$ANDROID_HOME/build-tools/28.0.3/
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export ENV=prod
-export GRADLE_HOME=/opt/gradle/gradle-5.0
+export GRADLE_HOME=/opt/gradle/gradle-6.0.1
 export PATH=${GRADLE_HOME}/bin:${PATH}
 export APP_NAME=nativecards-old
 
