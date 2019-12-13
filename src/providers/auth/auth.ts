@@ -16,8 +16,11 @@ export class AuthProvider extends Api {
   public login(credentials) {
     return Observable.create(observer => {
       this.requestPost('api-token-auth/', credentials).subscribe(data => {
-        if (data && data['token']) {
-          let user = new User(credentials.username, data['token']);
+        if (data && data['access'] && data['refresh']) {
+          let user = new User(
+            credentials.username,
+            data['access'],
+            data['refresh']);
           this.storage.set('user', user).then((user) => {
             observer.next(user);
             observer.complete();
@@ -43,10 +46,14 @@ export class AuthProvider extends Api {
     return Observable.create(observer => {
       this.getUserInfo().then((oldUser) => {
         if (oldUser) {
-          let tokenData = { 'token': oldUser.token };
+          let tokenData = { 'refresh': oldUser.refresh };
           this.requestPost('api-token-refresh/', tokenData).subscribe(data => {
-            if (data && data['token']) {
-              let user = new User(oldUser.username, data['token']);
+            if (data && data['access'] && data['refresh']) {
+              let user = new User(
+                oldUser.username,
+                data['access'],
+                data['refresh'],
+              );
               this.storage.set('user', user).then((user) => {
                 observer.next(user);
                 observer.complete();
